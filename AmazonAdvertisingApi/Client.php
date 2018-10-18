@@ -131,7 +131,7 @@ class Client
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -147,7 +147,7 @@ class Client
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -162,7 +162,7 @@ class Client
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -177,7 +177,7 @@ class Client
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -192,7 +192,7 @@ class Client
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -207,7 +207,7 @@ class Client
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -222,7 +222,7 @@ class Client
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -237,7 +237,7 @@ class Client
     {
         $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -252,7 +252,7 @@ class Client
     {
         $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -267,7 +267,7 @@ class Client
     {
         $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -282,7 +282,7 @@ class Client
     {
         $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -293,11 +293,11 @@ class Client
         return $this->_operation($type . "adGroups", $data, "PUT");
     }
 
-    public function archiveAdGroup($adGroupId)
+    public function archiveAdGroup($adGroupId, $data = null)
     {
         $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -312,7 +312,7 @@ class Client
     {
         $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -327,7 +327,7 @@ class Client
     {
         $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -342,7 +342,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -357,7 +357,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -372,7 +372,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -387,7 +387,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -402,7 +402,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -417,7 +417,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -432,7 +432,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -447,7 +447,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -462,7 +462,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -477,7 +477,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -492,7 +492,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -507,7 +507,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -522,7 +522,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -537,7 +537,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -548,11 +548,11 @@ class Client
         return $this->_operation($type."negativeKeywords/extended", $data);
     }
 
-    public function getCampaignNegativeKeyword($keywordId)
+    public function getCampaignNegativeKeyword($keywordId, $data = null)
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -563,11 +563,11 @@ class Client
         return $this->_operation($type."campaignNegativeKeywords/{$keywordId}");
     }
 
-    public function getCampaignNegativeKeywordEx($keywordId)
+    public function getCampaignNegativeKeywordEx($keywordId, $data = null)
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -582,7 +582,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -597,7 +597,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -612,7 +612,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -627,7 +627,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -642,7 +642,7 @@ class Client
     {
         $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -657,7 +657,7 @@ class Client
     {
         $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -672,7 +672,7 @@ class Client
     {
         $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -687,7 +687,7 @@ class Client
     {
         $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -702,7 +702,7 @@ class Client
     {
         $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -717,7 +717,7 @@ class Client
     {
         $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -732,7 +732,7 @@ class Client
     {
         $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -747,7 +747,7 @@ class Client
     {
         $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
@@ -823,7 +823,7 @@ class Client
     {
         $reportType = is_array($data) && isset($data['reportType']) ? $data['reportType'] : 'sponsoredProducts';
         $type = $reportType == 'sponsoredProducts' ? 'sp' : ($reportType == 'sponsoredBrands' ? 'hsa' : null);
-        if ($this->apiVersion == 'v2') {
+        if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
