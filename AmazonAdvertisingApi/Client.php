@@ -35,6 +35,7 @@ class Client
 
         $versions = new Versions();
         $this->versionStrings = $versions->versionStrings;
+        $this->apiVersion = $config['apiVersion'] ?? null;
 
         $this->apiVersion = is_null($this->apiVersion) ? $this->versionStrings["apiVersion"] : $this->apiVersion;
         $this->applicationVersion = $this->versionStrings["applicationVersion"];
