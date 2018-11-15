@@ -820,6 +820,12 @@ class Client
         return $req;
     }
 
+    /**
+     * @param $recordType
+     * @param null $data
+     * @return array
+     * @throws \Exception
+     */
     public function requestReport($recordType, $data = null)
     {
         $reportType = is_array($data) && isset($data['reportType']) ? $data['reportType'] : 'sponsoredProducts';
@@ -828,6 +834,9 @@ class Client
             $type = null;
         } else {
             $type = $type . "/";
+            if(is_array($data) && isset($data['reportType'])){
+                unset($data['reportType']);
+            }
         }
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
