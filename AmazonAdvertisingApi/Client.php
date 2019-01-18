@@ -1233,6 +1233,23 @@ class Client
 
     //end of portfolios
 
+    //start of Product Attribute Targeting
+
+    /**
+     * POST https://advertising-api.amazon.com/v2/sp/targets/productRecommendations
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#createTargetRecommendations
+     *
+     * @param array $data [pageSize => int(1-50), pageNumber => int, asins: string[]]
+     * @return array
+     * @throws \Exception
+     */
+    public function generateTargetsProductRecommendations(array $data)
+    {
+        return $this->_operation("targets/productRecommendations", $data, 'POST');
+    }
+
+    //end of PAT
+
     /**
      * @param $location
      * @param bool $gunzip
