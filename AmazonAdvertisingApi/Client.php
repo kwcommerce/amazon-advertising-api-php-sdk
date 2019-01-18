@@ -1245,7 +1245,7 @@ class Client
      */
     public function generateTargetsProductRecommendations(array $data)
     {
-        return $this->_operation("targets/productRecommendations", $data, 'POST');
+        return $this->_operation("sp/targets/productRecommendations", $data, 'POST');
     }
 
     //end of PAT
