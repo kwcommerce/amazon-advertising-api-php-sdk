@@ -1243,10 +1243,221 @@ class Client
      * @return array
      * @throws \Exception
      */
-    public function generateTargetsProductRecommendations(array $data)
+    public function generateTargetsProductRecommendations(array $data): array
     {
         return $this->_operation("sp/targets/productRecommendations", $data, 'POST');
     }
+
+    /**
+     * GET https://advertising-api.amazon.com/v2/sp/targets/{targetId}
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getTargetingClause
+     *
+     * @param int $targetId
+     * @return array
+     * @throws \Exception
+     */
+    public function getTargetingClause(int $targetId): array
+    {
+        return $this->_operation("sp/targets/" . $targetId);
+    }
+
+    /**
+     * GET https://advertising-api.amazon.com/v2/sp/targets/extended/{targetId}
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getTargetingClauseEx
+     *
+     * @param int $targetId
+     * @return array
+     * @throws \Exception
+     */
+    public function getTargetingClauseEx(int $targetId): array
+    {
+        return $this->_operation("sp/targets/extended/" . $targetId);
+    }
+
+    /**
+     * GET https://advertising-api.amazon.com/v2/sp/targets
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#listTargetingClauses
+     *
+     * @param array|null $data
+     * @return array
+     * @throws \Exception
+     */
+    public function listTargetingClauses($data = null): array
+    {
+        return $this->_operation("sp/targets", $data);
+    }
+
+    /**
+     * GET https://advertising-api.amazon.com/v2/sp/targets/extended
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#listTargetingClausesEx
+     *
+     * @param array|null $data
+     * @return array
+     * @throws \Exception
+     */
+    public function listTargetingClausesEx($data = null): array
+    {
+        return $this->_operation("sp/targets/extended", $data);
+    }
+
+    /**
+     * POST https://advertising-api.amazon.com/v2/sp/targets
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#createTargetingClauses
+     *
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function createTargetingClauses(array $data): array
+    {
+        return $this->_operation("sp/targets", $data, 'POST');
+    }
+
+    /**
+     * PUT https://advertising-api.amazon.com/v2/sp/targets
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#updateTargetingClauses
+     *
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function updateTargetingClauses(array $data): array
+    {
+        return $this->_operation("sp/targets", $data, 'PUT');
+    }
+
+    /**
+     * DELETE https://advertising-api.amazon.com/v2/sp/targets
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#archiveTargetingClause
+     *
+     * @param int $targetId
+     * @return array
+     * @throws \Exception
+     */
+    public function archiveTargetingClause(int $targetId): array
+    {
+        return $this->_operation("sp/targets/" . $targetId, 'DELETE');
+    }
+
+
+    /**
+     * GET https://advertising-api.amazon.com/v2/sp/targets/categories
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getTargetingCategories
+     *
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function getTargetingCategories(array $data): array
+    {
+        return $this->_operation("sp/targets/categories", $data);
+    }
+
+    /**
+     * GET https://advertising-api.amazon.com/v2/sp/targets/brands
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getBrandRecommendations
+     *
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function getBrandRecommendations(array $data): array
+    {
+        return $this->_operation("sp/targets/brands", $data);
+    }
+
+    /**
+     * GET https://advertising-api.amazon.com/v2/sp/targets/{targetId}
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getNegativeTargetingClause
+     *
+     * @param int $targetId
+     * @return array
+     * @throws \Exception
+     */
+    public function getNegativeTargetingClause(int $targetId): array
+    {
+        return $this->_operation("sp/negativeTargets/" . $targetId);
+    }
+
+    /**
+     * GET https://advertising-api.amazon.com/v2/sp/negativeTargets/extended/{targetId}
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getNegativeTargetingClauseEx
+     *
+     * @param int $targetId
+     * @return array
+     * @throws \Exception
+     */
+    public function getNegativeTargetingClauseEx(int $targetId): array
+    {
+        return $this->_operation("sp/negativeTargets/extended/" . $targetId);
+    }
+
+    /**
+     * GET https://advertising-api.amazon.com/v2/sp/negativeTargets
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#listNegativeTargetingClauses
+     *
+     * @param array|null $data
+     * @return array
+     * @throws \Exception
+     */
+    public function listNegativeTargetingClauses($data = null): array
+    {
+        return $this->_operation("sp/negativeTargets", $data);
+    }
+
+    /**
+     * GET https://advertising-api.amazon.com/v2/sp/negativeTargets/extended
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#listNegativeTargetingClausesEx
+     *
+     * @param array|null $data
+     * @return array
+     * @throws \Exception
+     */
+    public function listNegativeTargetingClausesEx($data = null): array
+    {
+        return $this->_operation("sp/negativeTargets/extended", $data);
+    }
+
+    //
+    /**
+     * POST https://advertising-api.amazon.com/v2/sp/negativeTargets
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#createNegativeTargetingClauses
+     *
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function createNegativeTargetingClauses(array $data): array
+    {
+        return $this->_operation("sp/negativeTargets", $data, 'POST');
+    }
+
+    /**
+     * PUT https://advertising-api.amazon.com/v2/sp/negativeTargets
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#updateNegativeTargetingClauses
+     *
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function updateNegativeTargetingClauses(array $data): array
+    {
+        return $this->_operation("sp/negativeTargets", $data, 'PUT');
+    }
+
+    /**
+     * DELETE https://advertising-api.amazon.com/v2/sp/negativeTargets
+     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#archiveNegativeTargetingClause
+     *
+     * @param int $targetId
+     * @return array
+     * @throws \Exception
+     */
+    public function archiveNegativeTargetingClause(int $targetId): array
+    {
+        return $this->_operation("sp/negativeTargets/" . $targetId, 'DELETE');
+    }
+
 
     //end of PAT
 
@@ -1289,7 +1500,7 @@ class Client
      * @return array
      * @throws \Exception
      */
-    private function _operation($interface, $params = array(), $method = "GET")
+    private function _operation($interface, $params = [], $method = "GET")
     {
         $headers = array(
             "Authorization: bearer {$this->config["accessToken"]}",
