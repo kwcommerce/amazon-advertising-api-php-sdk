@@ -1575,10 +1575,12 @@ class Client
             return array("success" => false,
                 "code" => $response_info["http_code"],
                 "response" => $response,
+                'responseInfo' => $response_info,
                 "requestId" => $requestId);
         } else {
             return array("success" => true,
                 "code" => $response_info["http_code"],
+                'responseInfo' => $response_info,
                 "response" => $response,
                 "requestId" => $this->requestId);
         }

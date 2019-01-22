@@ -4,7 +4,7 @@ Official Amazon Advertising API PHP client library.
 
 ## Requirements
 
-PHP >= 5.3.0<br/>
+PHP >= 7.0.0<br/>
 cURL >= 7.18
 
 ## Documentation
