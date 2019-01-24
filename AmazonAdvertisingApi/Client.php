@@ -15,6 +15,7 @@ class Client
         "accessToken" => null,
         "refreshToken" => null,
         "sandbox" => false,
+        "saveFile" => false,
         "apiVersion" => 'v1');
 
     private $apiVersion = null;
@@ -1483,6 +1484,19 @@ class Client
         $request->setOption(CURLOPT_URL, $location);
         $request->setOption(CURLOPT_HTTPHEADER, $headers);
         $request->setOption(CURLOPT_USERAGENT, $this->userAgent);
+        if($this->config['saveFile']){
+            $tmpFile = tmpfile();
+            $request->setOption(CURLOPT_HEADER, 0);
+            $request->setOption(CURLOPT_FILE, $tmpFile);
+            $response = $this->_executeRequest($request);
+            if($response['success']){
+                $response["response"] = $tmpFile;
+                return $response;
+            } else {
+                fclose($tmpFile);
+                return $response;
+            }
+        }
 
         if ($gunzip) {
             $response = $this->_executeRequest($request);
@@ -1491,6 +1505,10 @@ class Client
         }
 
         return $this->_executeRequest($request);
+    }
+
+    protected function saveFile(string $location, $gunzip = false){
+
     }
 
     /**
@@ -1645,6 +1663,11 @@ class Client
                 case "sandbox":
                     if (!is_bool($v)) {
                         $this->_logAndThrow("Invalid parameter value for sandbox.");
+                    }
+                    break;
+                case "saveFile":
+                    if (!is_bool($v)) {
+                        $this->_logAndThrow("Invalid parameter value for saveFile.");
                     }
                     break;
             }
