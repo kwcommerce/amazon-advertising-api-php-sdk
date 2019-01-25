@@ -1486,7 +1486,7 @@ class Client
         $request->setOption(CURLOPT_HTTPHEADER, $headers);
         $request->setOption(CURLOPT_USERAGENT, $this->userAgent);
         if ($this->config['saveFile'] && $gunzip) {
-            $this->_saveDownloaded($request);
+            return $this->_saveDownloaded($request);
         }
 
         if ($gunzip) {
