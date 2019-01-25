@@ -1420,6 +1420,7 @@ class Client
     }
 
     //
+
     /**
      * POST https://advertising-api.amazon.com/v2/sp/negativeTargets
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#createNegativeTargetingClauses
@@ -1485,24 +1486,7 @@ class Client
         $request->setOption(CURLOPT_HTTPHEADER, $headers);
         $request->setOption(CURLOPT_USERAGENT, $this->userAgent);
         if ($this->config['saveFile'] && $gunzip) {
-            $filePath = '/tmp/' . uniqid(microtime(true).'_amzn_ads_') . '.json.gz';
-            $tmpFile = fopen($filePath, 'w+');
-            $request->setOption(CURLOPT_HEADER, 0);
-            $request->setOption(CURLOPT_FOLLOWLOCATION, 1);
-            $request->setOption(CURLOPT_FILE, $tmpFile);
-            $response = $this->_executeRequest($request);
-            if ($response['success']) {
-                $extractedFile = $this->_extractFile($filePath);
-                fclose($tmpFile);
-                unlink($filePath);
-                $response['response_type'] = 'file';
-                $response["response"] = $extractedFile;
-                return $response;
-            } else {
-                fclose($tmpFile);
-                unlink($filePath);
-                return $response;
-            }
+            $this->_saveDownloaded($request);
         }
 
         if ($gunzip) {
@@ -1512,6 +1496,34 @@ class Client
         }
 
         return $this->_executeRequest($request);
+    }
+
+    /**
+     * Save *.json.gz file, extract it, remove .gz file
+     * and set into response path to json file
+     * @param CurlRequest $request
+     * @return array
+     */
+    protected function _saveDownloaded(CurlRequest $request): array
+    {
+        $filePath = '/tmp/' . uniqid(microtime(true) . '_amzn_ads_') . '.json.gz';
+        $tmpFile = fopen($filePath, 'w+');
+        $request->setOption(CURLOPT_HEADER, 0);
+        $request->setOption(CURLOPT_FOLLOWLOCATION, 1);
+        $request->setOption(CURLOPT_FILE, $tmpFile);
+        $response = $this->_executeRequest($request);
+        if ($response['success']) {
+            $extractedFile = $this->_extractFile($filePath);
+            fclose($tmpFile);
+            unlink($filePath);
+            $response['response_type'] = 'file';
+            $response["response"] = $extractedFile;
+            return $response;
+        } else {
+            fclose($tmpFile);
+            unlink($filePath);
+            return $response;
+        }
     }
 
     /**
