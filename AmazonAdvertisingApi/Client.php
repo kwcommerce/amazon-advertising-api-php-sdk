@@ -1484,16 +1484,23 @@ class Client
         $request->setOption(CURLOPT_URL, $location);
         $request->setOption(CURLOPT_HTTPHEADER, $headers);
         $request->setOption(CURLOPT_USERAGENT, $this->userAgent);
-        if($this->config['saveFile']){
-            $tmpFile = tmpfile();
+        if ($this->config['saveFile'] && $gunzip) {
+            $filePath = '/tmp/' . uniqid(microtime(true).'_amzn_ads_') . '.json.gz';
+            $tmpFile = fopen($filePath, 'w+');
             $request->setOption(CURLOPT_HEADER, 0);
+            $request->setOption(CURLOPT_FOLLOWLOCATION, 1);
             $request->setOption(CURLOPT_FILE, $tmpFile);
             $response = $this->_executeRequest($request);
-            if($response['success']){
-                $response["response"] = $tmpFile;
+            if ($response['success']) {
+                $extractedFile = $this->_extractFile($filePath);
+                fclose($tmpFile);
+                unlink($filePath);
+                $response['response_type'] = 'file';
+                $response["response"] = $extractedFile;
                 return $response;
             } else {
                 fclose($tmpFile);
+                unlink($filePath);
                 return $response;
             }
         }
@@ -1507,8 +1514,24 @@ class Client
         return $this->_executeRequest($request);
     }
 
-    protected function saveFile(string $location, $gunzip = false){
+    /**
+     * @param string $filePath
+     * @return string
+     */
+    protected function _extractFile(string $filePath): string
+    {
+        $bufferSize = 4096; // read 4kb at a time
+        $unzipFilePath = str_replace('.gz', '', $filePath);
+        $file = gzopen($filePath, 'rb');
+        $unzippedFile = fopen($unzipFilePath, 'wb');
 
+        while (!gzeof($file)) {
+            fwrite($unzippedFile, gzread($file, $bufferSize));
+        }
+        fclose($unzippedFile);
+        gzclose($file);
+
+        return $unzipFilePath;
     }
 
     /**
