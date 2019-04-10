@@ -280,6 +280,9 @@ class Client
         } else {
             $type = $type . "/";
         }
+        if (isset($data['campaignType'])) {
+            unset($data['campaignType']);
+        }
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -299,6 +302,9 @@ class Client
             $type = null;
         } else {
             $type = $type . "/";
+        }
+        if (isset($data['campaignType'])) {
+            unset($data['campaignType']);
         }
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
@@ -566,6 +572,9 @@ class Client
         } else {
             $type = $type . "/";
         }
+        if (isset($data['keywordType'])) {
+            unset($data['keywordType']);
+        }
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -585,6 +594,9 @@ class Client
             $type = null;
         } else {
             $type = $type . "/";
+        }
+        if (isset($data['keywordType'])) {
+            unset($data['keywordType']);
         }
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
@@ -627,6 +639,9 @@ class Client
             $type = null;
         } else {
             $type = $type . "/";
+        }
+        if(isset($data['keywordType'])){
+            unset($data['keywordType']);
         }
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
@@ -728,6 +743,9 @@ class Client
             $type = null;
         } else {
             $type = $type . "/";
+        }
+        if(isset($data['keywordType'])){
+            unset($data['keywordType']);
         }
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
@@ -852,6 +870,9 @@ class Client
         } else {
             $type = $type . "/";
         }
+        if(isset($data['keywordType'])){
+            unset($data['keywordType']);
+        }
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -871,6 +892,9 @@ class Client
             $type = null;
         } else {
             $type = $type . "/";
+        }
+        if(isset($data['keywordType'])){
+            unset($data['keywordType']);
         }
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
