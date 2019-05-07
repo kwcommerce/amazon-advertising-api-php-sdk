@@ -13,8 +13,8 @@ class Regions
             "sandbox"  => "advertising-api-test.amazon.com",
             "tokenUrl" => "api.amazon.com/auth/o2/token"
         ),
-        "fa" => array(
-            "prod"     => "advertising-api-fa.amazon.com",
+        "fe" => array(
+            "prod"     => "advertising-api-fe.amazon.com",
             "sandbox"  => "advertising-api-test.amazon.com",
             "tokenUrl" => "api.amazon.com/auth/o2/token"
         )
