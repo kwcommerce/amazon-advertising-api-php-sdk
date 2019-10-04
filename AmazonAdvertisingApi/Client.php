@@ -29,6 +29,8 @@ class Client
 
     public $profileId = null;
 
+    public $headers = [];
+
     /**
      * Client constructor.
      * @param $config
@@ -640,7 +642,7 @@ class Client
         } else {
             $type = $type . "/";
         }
-        if(isset($data['keywordType'])){
+        if (isset($data['keywordType'])) {
             unset($data['keywordType']);
         }
         if (!$type && $this->apiVersion == 'v2') {
@@ -744,7 +746,7 @@ class Client
         } else {
             $type = $type . "/";
         }
-        if(isset($data['keywordType'])){
+        if (isset($data['keywordType'])) {
             unset($data['keywordType']);
         }
         if (!$type && $this->apiVersion == 'v2') {
@@ -870,7 +872,7 @@ class Client
         } else {
             $type = $type . "/";
         }
-        if(isset($data['keywordType'])){
+        if (isset($data['keywordType'])) {
             unset($data['keywordType']);
         }
         if (!$type && $this->apiVersion == 'v2') {
@@ -893,7 +895,7 @@ class Client
         } else {
             $type = $type . "/";
         }
-        if(isset($data['keywordType'])){
+        if (isset($data['keywordType'])) {
             unset($data['keywordType']);
         }
         if (!$type && $this->apiVersion == 'v2') {
@@ -1589,6 +1591,8 @@ class Client
         if (!is_null($this->profileId)) {
             array_push($headers, "Amazon-Advertising-API-Scope: {$this->profileId}");
         }
+
+        $this->headers = $headers;
 
         $request = new CurlRequest();
         $url = "{$this->endpoint}/{$interface}";
