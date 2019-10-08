@@ -280,11 +280,12 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
-        if (isset($data['campaignType'])) {
-            unset($data['campaignType']);
-        }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -303,11 +304,12 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
-        if (isset($data['campaignType'])) {
-            unset($data['campaignType']);
-        }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -322,13 +324,17 @@ class Client
      */
     public function getAdGroup($adGroupId, $data = null)
     {
-        $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
+        $adGroupType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -343,13 +349,17 @@ class Client
      */
     public function getAdGroupEx($adGroupId, $data = null)
     {
-        $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
+        $adGroupType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -363,13 +373,17 @@ class Client
      */
     public function createAdGroups($data)
     {
-        $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
+        $adGroupType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -383,13 +397,17 @@ class Client
      */
     public function updateAdGroups($data)
     {
-        $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
+        $adGroupType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -404,13 +422,17 @@ class Client
      */
     public function archiveAdGroup($adGroupId, $data = null)
     {
-        $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
+        $adGroupType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -424,13 +446,17 @@ class Client
      */
     public function listAdGroups($data = null)
     {
-        $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
+        $adGroupType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -444,13 +470,17 @@ class Client
      */
     public function listAdGroupsEx($data = null)
     {
-        $adGroupType = is_array($data) && isset($data['adGroupType']) ? $data['adGroupType'] : 'sponsoredProducts';
+        $adGroupType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -465,13 +495,17 @@ class Client
      */
     public function getBiddableKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -486,13 +520,17 @@ class Client
      */
     public function getBiddableKeywordEx($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -506,13 +544,17 @@ class Client
      */
     public function createBiddableKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -526,13 +568,17 @@ class Client
      */
     public function updateBiddableKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -547,13 +593,17 @@ class Client
      */
     public function archiveBiddableKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -567,16 +617,17 @@ class Client
      */
     public function listBiddableKeywords($data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
-        if (isset($data['keywordType'])) {
-            unset($data['keywordType']);
-        }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -590,16 +641,17 @@ class Client
      */
     public function listBiddableKeywordsEx($data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
-        if (isset($data['keywordType'])) {
-            unset($data['keywordType']);
-        }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -614,13 +666,17 @@ class Client
      */
     public function getNegativeKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -635,16 +691,17 @@ class Client
      */
     public function getNegativeKeywordEx($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
-        if (isset($data['keywordType'])) {
-            unset($data['keywordType']);
-        }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -658,13 +715,17 @@ class Client
      */
     public function createNegativeKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -678,13 +739,17 @@ class Client
      */
     public function updateNegativeKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -699,13 +764,17 @@ class Client
      */
     public function archiveNegativeKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -719,13 +788,17 @@ class Client
      */
     public function listNegativeKeywords($data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -739,16 +812,17 @@ class Client
      */
     public function listNegativeKeywordsEx($data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
-        if (isset($data['keywordType'])) {
-            unset($data['keywordType']);
-        }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -763,13 +837,17 @@ class Client
      */
     public function getCampaignNegativeKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -784,13 +862,17 @@ class Client
      */
     public function getCampaignNegativeKeywordEx($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -804,13 +886,17 @@ class Client
      */
     public function createCampaignNegativeKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -824,13 +910,17 @@ class Client
      */
     public function updateCampaignNegativeKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -845,13 +935,17 @@ class Client
      */
     public function removeCampaignNegativeKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -865,16 +959,17 @@ class Client
      */
     public function listCampaignNegativeKeywords($data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
-        if (isset($data['keywordType'])) {
-            unset($data['keywordType']);
-        }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -888,16 +983,17 @@ class Client
      */
     public function listCampaignNegativeKeywordsEx($data = null)
     {
-        $keywordType = is_array($data) && isset($data['keywordType']) ? $data['keywordType'] : 'sponsoredProducts';
+        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
-        if (isset($data['keywordType'])) {
-            unset($data['keywordType']);
-        }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -912,13 +1008,17 @@ class Client
      */
     public function getProductAd($productAdId, $data = null)
     {
-        $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
+        $productAdType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -933,13 +1033,17 @@ class Client
      */
     public function getProductAdEx($productAdId, $data = null)
     {
-        $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
+        $productAdType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -953,13 +1057,17 @@ class Client
      */
     public function createProductAds($data)
     {
-        $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
+        $productAdType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -973,13 +1081,17 @@ class Client
      */
     public function updateProductAds($data)
     {
-        $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
+        $productAdType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -994,13 +1106,17 @@ class Client
      */
     public function archiveProductAd($productAdId, $data = null)
     {
-        $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
+        $productAdType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -1014,13 +1130,17 @@ class Client
      */
     public function listProductAds($data = null)
     {
-        $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
+        $productAdType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
@@ -1034,13 +1154,17 @@ class Client
      */
     public function listProductAdsEx($data = null)
     {
-        $productAdType = is_array($data) && isset($data['productAdType']) ? $data['productAdType'] : 'sponsoredProducts';
+        $productAdType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $productAdType == 'sponsoredProducts' ? 'sp' : ($productAdType == 'sponsoredBrands' ? 'hsa' : null);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
+            if (isset($data['campaignType'])) {
+                unset($data['campaignType']);
+            }
             $type = $type . "/";
         }
+
         if (!$type && $this->apiVersion == 'v2') {
             $this->_logAndThrow("Unable to perform request. No type is set");
         }
