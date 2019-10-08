@@ -282,6 +282,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -306,6 +307,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -331,6 +333,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -356,6 +359,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -380,6 +384,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -404,6 +409,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -429,6 +435,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -453,6 +460,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -477,6 +485,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -502,6 +511,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -551,6 +561,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -575,6 +586,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -600,6 +612,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -648,6 +661,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -722,6 +736,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -746,6 +761,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -795,6 +811,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -819,6 +836,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -893,6 +911,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -917,6 +936,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -966,6 +986,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -990,6 +1011,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -1064,6 +1086,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -1088,6 +1111,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -1137,6 +1161,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
@@ -1161,6 +1186,7 @@ class Client
         } else {
             if (isset($data['campaignType'])) {
                 unset($data['campaignType']);
+                $data = array_values($data);
             }
             $type = $type . "/";
         }
