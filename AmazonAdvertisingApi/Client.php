@@ -26,6 +26,7 @@ class Client
     private $requestId = null;
     private $endpoints = null;
     private $versionStrings = null;
+    public $campaignTypePrefix;
 
     public $profileId = null;
 
@@ -173,7 +174,7 @@ class Client
     public function getCampaign($campaignId, $data = null)
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -195,7 +196,7 @@ class Client
     public function getCampaignEx($campaignId, $data = null)
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -215,7 +216,7 @@ class Client
     public function createCampaigns($data)
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -235,7 +236,7 @@ class Client
     public function updateCampaigns($data)
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -256,7 +257,7 @@ class Client
     public function archiveCampaign($campaignId, $data = null)
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -379,6 +380,7 @@ class Client
     {
         $adGroupType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $adGroupType == 'sponsoredProducts' ? 'sp' : ($adGroupType == 'sponsoredBrands' ? 'hsa' : null);
+
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -505,7 +507,7 @@ class Client
     public function getBiddableKeyword($keywordId, $data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -531,7 +533,7 @@ class Client
     public function getBiddableKeywordEx($keywordId, $data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -555,7 +557,7 @@ class Client
     public function createBiddableKeywords($data)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -580,7 +582,7 @@ class Client
     public function updateBiddableKeywords($data)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -606,7 +608,7 @@ class Client
     public function archiveBiddableKeyword($keywordId, $data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -631,7 +633,7 @@ class Client
     public function listBiddableKeywords($data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -655,7 +657,7 @@ class Client
     public function listBiddableKeywordsEx($data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -681,7 +683,7 @@ class Client
     public function getNegativeKeyword($keywordId, $data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -706,7 +708,7 @@ class Client
     public function getNegativeKeywordEx($keywordId, $data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -730,7 +732,7 @@ class Client
     public function createNegativeKeywords($data)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -755,7 +757,7 @@ class Client
     public function updateNegativeKeywords($data)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -781,7 +783,7 @@ class Client
     public function archiveNegativeKeyword($keywordId, $data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -805,7 +807,7 @@ class Client
     public function listNegativeKeywords($data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -830,7 +832,7 @@ class Client
     public function listNegativeKeywordsEx($data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -856,7 +858,7 @@ class Client
     public function getCampaignNegativeKeyword($keywordId, $data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -881,7 +883,7 @@ class Client
     public function getCampaignNegativeKeywordEx($keywordId, $data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -905,7 +907,7 @@ class Client
     public function createCampaignNegativeKeywords($data)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -930,7 +932,7 @@ class Client
     public function updateCampaignNegativeKeywords($data)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -956,7 +958,7 @@ class Client
     public function removeCampaignNegativeKeyword($keywordId, $data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -980,7 +982,7 @@ class Client
     public function listCampaignNegativeKeywords($data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -1005,7 +1007,7 @@ class Client
     public function listCampaignNegativeKeywordsEx($data = null)
     {
         $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $keywordType == 'sponsoredProducts' ? 'sp' : ($keywordType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
