@@ -281,10 +281,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -306,10 +302,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -332,10 +324,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -358,10 +346,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -384,10 +368,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -435,10 +415,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -460,10 +436,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -485,10 +457,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -511,10 +479,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -612,10 +576,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -661,10 +621,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -811,10 +767,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -836,10 +788,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -986,10 +934,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -1011,10 +955,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -1161,10 +1101,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
@@ -1186,10 +1122,6 @@ class Client
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
-            if (isset($data['campaignType'])) {
-                unset($data['campaignType']);
-                $data = array_values($data);
-            }
             $type = $type . "/";
         }
 
