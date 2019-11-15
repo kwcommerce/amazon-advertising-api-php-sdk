@@ -1212,6 +1212,28 @@ class Client
     }
 
     /**
+     * GET /v2/stores
+     * @param array|null $data
+     * @return array
+     * @throws \Exception
+     */
+    public function getStores($data = null)
+    {
+        return $this->_operation("v2/stores", $data);
+    }
+
+    /**
+     * GET /v2stores/{$brandEntityId}
+     * @param int $brandEntityId
+     * @return array
+     * @throws \Exception
+     */
+    public function getStoresByBrandEntityId(int $brandEntityId)
+    {
+        return $this->_operation("v2/stores/{$brandEntityId}");
+    }
+
+    /**
      * @param $recordType
      * @param null $data
      * @return array
@@ -1570,8 +1592,39 @@ class Client
         return $this->_operation("sp/negativeTargets/" . $targetId, 'DELETE');
     }
 
-
     //end of PAT
+
+    //SB v3
+
+    /**
+     * GET /brands
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Brands/getBrands
+     * @param array|null $data
+     * @return array
+     * @throws \Exception
+     */
+    public function getBrands($data = null): array
+    {
+        return $this->_operation("brands", $data);
+    }
+
+    /**
+     * GET /pageAsins
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Landing%20page%20asins/listAsins
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function getPageAsins(array $data): array
+    {
+        if(!isset($data['pageUrl'])){
+            throw new \Exception("pageUrl should be set as GET param");
+        }
+        return $this->_operation("pageAsins", $data);
+    }
+
+
+    //end of SB v3
 
     /**
      * @param $location
