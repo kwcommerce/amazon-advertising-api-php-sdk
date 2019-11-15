@@ -1230,7 +1230,7 @@ class Client
      */
     public function getStores($data = null)
     {
-        return $this->_operation("v2/stores", $data);
+        return $this->_operation("stores", $data);
     }
 
     /**
@@ -1241,7 +1241,7 @@ class Client
      */
     public function getStoresByBrandEntityId(int $brandEntityId)
     {
-        return $this->_operation("v2/stores/{$brandEntityId}");
+        return $this->_operation("stores/{$brandEntityId}");
     }
 
     /**
@@ -1743,6 +1743,7 @@ class Client
         $this->headers = $headers;
 
         $request = new CurlRequest();
+        $this->endpoint = trim($this->endpoint,"/");
         $url = "{$this->endpoint}/{$interface}";
         $this->requestId = null;
         $data = "";
