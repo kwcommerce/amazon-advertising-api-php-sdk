@@ -277,11 +277,22 @@ class Client
     public function listCampaigns($data = null)
     {
         $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
-        $type = $campaignType == 'sponsoredProducts' ? 'sp' : ($campaignType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $campaignType == 'sponsoredProducts'
+            ? 'sp'
+            : ($campaignType == 'sponsoredBrands'
+                ? 'hsa'
+                : ($this->campaignTypePrefix == 'hsa'
+                    ? 'hsa'
+                    : 'sp'
+                )
+            );
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
             $type = $type . "/";
+        }
+        if (isset($data['campaignType']) && $type === 'hsa/') {
+            unset($data['campaignType']);
         }
 
         if (!$type && $this->apiVersion == 'v2') {
