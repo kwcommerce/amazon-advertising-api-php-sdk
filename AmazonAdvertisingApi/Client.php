@@ -1634,6 +1634,62 @@ class Client
         return $this->_operation("pageAsins", $data);
     }
 
+    /**
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/listCampaigns
+     * @param null $data
+     * @return array
+     * @throws \Exception
+     */
+    public function listSponsoredBrandCampaigns($data = null): array
+    {
+        return $this->_operation("sb/campaigns", $data);
+    }
+
+    /**
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/createCampaigns
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function createSponsoredBrandCampaigns(array $data): array
+    {
+        return $this->_operation("sb/campaigns", $data, 'POST');
+    }
+
+    /**
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/updateCampaigns
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function updateSponsoredBrandCampaigns(array $data): array
+    {
+        return $this->_operation("sb/campaigns", $data, 'PUT');
+    }
+
+
+    /**
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/getCampaign
+     * @param int $campaignId
+     * @return array
+     * @throws \Exception
+     */
+    public function getSponsoredBrandCampaign(int $campaignId): array
+    {
+        return $this->_operation("sb/campaigns/{$campaignId}");
+    }
+
+    /**
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/archiveCampaign
+     * @param int $campaignId
+     * @return array
+     * @throws \Exception
+     */
+    public function archiveSponsoredBrandCampaign(int $campaignId): array
+    {
+        return $this->_operation("sb/campaigns/{$campaignId}", null,'DELETE');
+    }
+
 
     //end of SB v3
 
