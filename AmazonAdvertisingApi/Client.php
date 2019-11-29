@@ -1620,6 +1620,18 @@ class Client
     }
 
     /**
+     * GET /stores/assets
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Stores/listAssets
+     * @param array|null $data
+     * @return array
+     * @throws \Exception
+     */
+    public function getStoreAssets($data = null): array
+    {
+        return $this->_operation("/stores/assets", $data);
+    }
+
+    /**
      * GET /pageAsins
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Landing%20page%20asins/listAsins
      * @param array $data
