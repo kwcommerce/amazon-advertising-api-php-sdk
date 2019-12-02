@@ -1640,7 +1640,7 @@ class Client
      */
     public function getPageAsins(array $data): array
     {
-        if(!isset($data['pageUrl'])){
+        if (!isset($data['pageUrl'])) {
             throw new \Exception("pageUrl should be set as GET param");
         }
         return $this->_operation("pageAsins", $data);
@@ -1699,7 +1699,18 @@ class Client
      */
     public function archiveSponsoredBrandCampaign(int $campaignId): array
     {
-        return $this->_operation("sb/campaigns/{$campaignId}", null,'DELETE');
+        return $this->_operation("sb/campaigns/{$campaignId}", null, 'DELETE');
+    }
+
+    /**
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Bid%20recommendations/getBidsRecommendations
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function getSponsoredBrandBidRecommendations(array $data)
+    {
+        return $this->_operation("sb/recommendations/bids", $data, 'POST');
     }
 
 
@@ -1811,7 +1822,7 @@ class Client
         $this->headers = $headers;
 
         $request = new CurlRequest();
-        $this->endpoint = trim($this->endpoint,"/");
+        $this->endpoint = trim($this->endpoint, "/");
         $url = "{$this->endpoint}/{$interface}";
         $this->requestId = null;
         $data = "";
