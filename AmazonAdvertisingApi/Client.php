@@ -5,9 +5,12 @@ namespace AmazonAdvertisingApi;
 require_once "Versions.php";
 require_once "Regions.php";
 require_once "CurlRequest.php";
+require_once "SponsoredBrandsRequests.php";
 
 class Client
 {
+    use SponsoredBrandsRequests;
+
     private $config = array(
         "clientId" => null,
         "clientSecret" => null,
