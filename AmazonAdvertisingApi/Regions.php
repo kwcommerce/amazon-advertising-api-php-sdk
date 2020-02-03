@@ -1,6 +1,11 @@
 <?php
+
 namespace AmazonAdvertisingApi;
 
+/**
+ * Class Regions
+ * Contains server's map of Amazon Ads API by region
+ */
 class Regions
 {
     public $endpoints = array(

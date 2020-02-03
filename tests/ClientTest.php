@@ -26,11 +26,11 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
         $this->client = $this->getMockBuilder("AmazonAdvertisingApi\Client")
                              ->setConstructorArgs(array($this->config))
-                             ->setMethods(array("_executeRequest"))
+                             ->setMethods(array("executeRequest"))
                              ->getMock();
 
         $this->client->expects($this->any())
-             ->method("_executeRequest")
+             ->method("executeRequest")
              ->will($this->returnValue($this->return_value));
     }
 

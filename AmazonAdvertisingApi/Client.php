@@ -7,6 +7,10 @@ require_once "Regions.php";
 require_once "CurlRequest.php";
 require_once "SponsoredBrandsRequests.php";
 
+/**
+ * Class Client
+ * Contains requests' wrappers of Amazon Ads API
+ */
 class Client
 {
     use SponsoredBrandsRequests;
@@ -53,9 +57,9 @@ class Client
         $this->applicationVersion = $this->versionStrings["applicationVersion"];
         $this->userAgent = "AdvertisingAPI PHP Client Library v{$this->applicationVersion}";
 
-        $this->_validateConfig($config);
-        $this->_validateConfigParameters();
-        $this->_setEndpoints();
+        $this->validateConfig($config);
+        $this->validateConfigParameters();
+        $this->setEndpoints();
 
         if (is_null($this->config["accessToken"]) && !is_null($this->config["refreshToken"])) {
             /* convenience */
@@ -107,13 +111,13 @@ class Client
         $request->setOption(CURLOPT_POST, true);
         $request->setOption(CURLOPT_POSTFIELDS, rtrim($data, "&"));
 
-        $response = $this->_executeRequest($request);
+        $response = $this->executeRequest($request);
 
         $response_array = json_decode($response["response"], true);
         if (is_array($response_array) && array_key_exists("access_token", $response_array)) {
             $this->config["accessToken"] = $response_array["access_token"];
         } else {
-            $this->_logAndThrow("Unable to refresh token. 'access_token' not found in response. " . print_r($response, true));
+            $this->logAndThrow("Unable to refresh token. 'access_token' not found in response. " . print_r($response, true));
         }
 
         return $response;
@@ -176,7 +180,6 @@ class Client
      */
     public function getCampaign($campaignId, $data = null)
     {
-        $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -184,10 +187,10 @@ class Client
             $type = $type . "/";
         }
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
 
-        return $this->_operation($type . "campaigns/{$campaignId}");
+        return $this->operation($type . "campaigns/{$campaignId}");
     }
 
     /**
@@ -198,7 +201,6 @@ class Client
      */
     public function getCampaignEx($campaignId, $data = null)
     {
-        $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -206,9 +208,9 @@ class Client
             $type = $type . "/";
         }
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaigns/extended/{$campaignId}");
+        return $this->operation($type . "campaigns/extended/{$campaignId}");
     }
 
     /**
@@ -218,7 +220,6 @@ class Client
      */
     public function createCampaigns($data)
     {
-        $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -226,9 +227,9 @@ class Client
             $type = $type . "/";
         }
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaigns", $data, "POST");
+        return $this->operation($type . "campaigns", $data, "POST");
     }
 
     /**
@@ -238,7 +239,6 @@ class Client
      */
     public function updateCampaigns($data)
     {
-        $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -246,9 +246,9 @@ class Client
             $type = $type . "/";
         }
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaigns", $data, "PUT");
+        return $this->operation($type . "campaigns", $data, "PUT");
     }
 
     /**
@@ -259,7 +259,6 @@ class Client
      */
     public function archiveCampaign($campaignId, $data = null)
     {
-        $campaignType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -267,9 +266,9 @@ class Client
             $type = $type . "/";
         }
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaigns/{$campaignId}", null, "DELETE");
+        return $this->operation($type . "campaigns/{$campaignId}", null, "DELETE");
     }
 
     /**
@@ -299,9 +298,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaigns", $data);
+        return $this->operation($type . "campaigns", $data);
     }
 
     /**
@@ -320,9 +319,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaigns/extended", $data);
+        return $this->operation($type . "campaigns/extended", $data);
     }
 
     /**
@@ -342,9 +341,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "adGroups/{$adGroupId}");
+        return $this->operation($type . "adGroups/{$adGroupId}");
     }
 
     /**
@@ -364,9 +363,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "adGroups/extended/{$adGroupId}");
+        return $this->operation($type . "adGroups/extended/{$adGroupId}");
     }
 
     /**
@@ -386,9 +385,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "adGroups", $data, "POST");
+        return $this->operation($type . "adGroups", $data, "POST");
     }
 
     /**
@@ -411,9 +410,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "adGroups", $data, "PUT");
+        return $this->operation($type . "adGroups", $data, "PUT");
     }
 
     /**
@@ -433,9 +432,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "adGroups/{$adGroupId}", null, "DELETE");
+        return $this->operation($type . "adGroups/{$adGroupId}", null, "DELETE");
     }
 
     /**
@@ -454,9 +453,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "adGroups", $data);
+        return $this->operation($type . "adGroups", $data);
     }
 
     /**
@@ -475,9 +474,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "adGroups/extended", $data);
+        return $this->operation($type . "adGroups/extended", $data);
     }
 
     /**
@@ -488,7 +487,6 @@ class Client
      */
     public function getBiddableKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -497,9 +495,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "keywords/{$keywordId}");
+        return $this->operation($type . "keywords/{$keywordId}");
     }
 
     /**
@@ -510,7 +508,6 @@ class Client
      */
     public function getBiddableKeywordEx($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -522,9 +519,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "keywords/extended/{$keywordId}");
+        return $this->operation($type . "keywords/extended/{$keywordId}");
     }
 
     /**
@@ -534,7 +531,6 @@ class Client
      */
     public function createBiddableKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -547,9 +543,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "keywords", $data, "POST");
+        return $this->operation($type . "keywords", $data, "POST");
     }
 
     /**
@@ -559,7 +555,6 @@ class Client
      */
     public function updateBiddableKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -572,9 +567,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "keywords", $data, "PUT");
+        return $this->operation($type . "keywords", $data, "PUT");
     }
 
     /**
@@ -585,7 +580,6 @@ class Client
      */
     public function archiveBiddableKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -594,9 +588,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "keywords/{$keywordId}", null, "DELETE");
+        return $this->operation($type . "keywords/{$keywordId}", null, "DELETE");
     }
 
     /**
@@ -606,7 +600,6 @@ class Client
      */
     public function listBiddableKeywords($data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -618,9 +611,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "keywords", $data);
+        return $this->operation($type . "keywords", $data);
     }
 
     /**
@@ -630,7 +623,6 @@ class Client
      */
     public function listBiddableKeywordsEx($data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -639,9 +631,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "keywords/extended", $data);
+        return $this->operation($type . "keywords/extended", $data);
     }
 
     /**
@@ -652,7 +644,6 @@ class Client
      */
     public function getNegativeKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -664,9 +655,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "negativeKeywords/{$keywordId}");
+        return $this->operation($type . "negativeKeywords/{$keywordId}");
     }
 
     /**
@@ -677,7 +668,6 @@ class Client
      */
     public function getNegativeKeywordEx($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -689,9 +679,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "negativeKeywords/extended/{$keywordId}");
+        return $this->operation($type . "negativeKeywords/extended/{$keywordId}");
     }
 
     /**
@@ -701,7 +691,6 @@ class Client
      */
     public function createNegativeKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -714,9 +703,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "negativeKeywords", $data, "POST");
+        return $this->operation($type . "negativeKeywords", $data, "POST");
     }
 
     /**
@@ -726,7 +715,6 @@ class Client
      */
     public function updateNegativeKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -739,9 +727,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "negativeKeywords", $data, "PUT");
+        return $this->operation($type . "negativeKeywords", $data, "PUT");
     }
 
     /**
@@ -752,7 +740,6 @@ class Client
      */
     public function archiveNegativeKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -764,9 +751,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "negativeKeywords/{$keywordId}", null, "DELETE");
+        return $this->operation($type . "negativeKeywords/{$keywordId}", null, "DELETE");
     }
 
     /**
@@ -776,7 +763,6 @@ class Client
      */
     public function listNegativeKeywords($data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -785,9 +771,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "negativeKeywords", $data);
+        return $this->operation($type . "negativeKeywords", $data);
     }
 
     /**
@@ -797,7 +783,6 @@ class Client
      */
     public function listNegativeKeywordsEx($data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -806,9 +791,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "negativeKeywords/extended", $data);
+        return $this->operation($type . "negativeKeywords/extended", $data);
     }
 
     /**
@@ -819,7 +804,6 @@ class Client
      */
     public function getCampaignNegativeKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -831,9 +815,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaignNegativeKeywords/{$keywordId}");
+        return $this->operation($type . "campaignNegativeKeywords/{$keywordId}");
     }
 
     /**
@@ -844,7 +828,6 @@ class Client
      */
     public function getCampaignNegativeKeywordEx($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -856,9 +839,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaignNegativeKeywords/extended/{$keywordId}");
+        return $this->operation($type . "campaignNegativeKeywords/extended/{$keywordId}");
     }
 
     /**
@@ -868,7 +851,6 @@ class Client
      */
     public function createCampaignNegativeKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -881,9 +863,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaignNegativeKeywords", $data, "POST");
+        return $this->operation($type . "campaignNegativeKeywords", $data, "POST");
     }
 
     /**
@@ -893,7 +875,6 @@ class Client
      */
     public function updateCampaignNegativeKeywords($data)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -906,9 +887,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaignNegativeKeywords", $data, "PUT");
+        return $this->operation($type . "campaignNegativeKeywords", $data, "PUT");
     }
 
     /**
@@ -919,7 +900,6 @@ class Client
      */
     public function removeCampaignNegativeKeyword($keywordId, $data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -931,9 +911,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaignNegativeKeywords/{$keywordId}", null, "DELETE");
+        return $this->operation($type . "campaignNegativeKeywords/{$keywordId}", null, "DELETE");
     }
 
     /**
@@ -943,7 +923,6 @@ class Client
      */
     public function listCampaignNegativeKeywords($data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -952,9 +931,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaignNegativeKeywords", $data);
+        return $this->operation($type . "campaignNegativeKeywords", $data);
     }
 
     /**
@@ -964,7 +943,6 @@ class Client
      */
     public function listCampaignNegativeKeywordsEx($data = null)
     {
-        $keywordType = is_array($data) && isset($data['campaignType']) ? $data['campaignType'] : 'sponsoredProducts';
         $type = $this->campaignTypePrefix == 'hsa' ? 'hsa' : 'sp';
         if ($this->apiVersion == 'v1') {
             $type = null;
@@ -973,9 +951,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "campaignNegativeKeywords/extended", $data);
+        return $this->operation($type . "campaignNegativeKeywords/extended", $data);
     }
 
     /**
@@ -998,9 +976,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "productAds/{$productAdId}");
+        return $this->operation($type . "productAds/{$productAdId}");
     }
 
     /**
@@ -1023,9 +1001,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation("productAds/extended/{$productAdId}");
+        return $this->operation("productAds/extended/{$productAdId}");
     }
 
     /**
@@ -1048,9 +1026,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "productAds", $data, "POST");
+        return $this->operation($type . "productAds", $data, "POST");
     }
 
     /**
@@ -1073,9 +1051,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "productAds", $data, "PUT");
+        return $this->operation($type . "productAds", $data, "PUT");
     }
 
     /**
@@ -1098,9 +1076,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "productAds/{$productAdId}", null, "DELETE");
+        return $this->operation($type . "productAds/{$productAdId}", null, "DELETE");
     }
 
     /**
@@ -1119,9 +1097,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation("productAds", $data);
+        return $this->operation("productAds", $data);
     }
 
     /**
@@ -1140,9 +1118,9 @@ class Client
         }
 
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "productAds/extended", $data);
+        return $this->operation($type . "productAds/extended", $data);
     }
 
     /**
@@ -1152,7 +1130,7 @@ class Client
      */
     public function getAdGroupBidRecommendations($adGroupId)
     {
-        return $this->_operation("adGroups/{$adGroupId}/bidRecommendations");
+        return $this->operation("adGroups/{$adGroupId}/bidRecommendations");
     }
 
     /**
@@ -1162,7 +1140,7 @@ class Client
      */
     public function getKeywordBidRecommendations($keywordId)
     {
-        return $this->_operation("keywords/{$keywordId}/bidRecommendations");
+        return $this->operation("keywords/{$keywordId}/bidRecommendations");
     }
 
     /**
@@ -1176,7 +1154,7 @@ class Client
         $data = array(
             "adGroupId" => $adGroupId,
             "keywords" => $data);
-        return $this->_operation("keywords/bidRecommendations", $data, "POST");
+        return $this->operation("keywords/bidRecommendations", $data, "POST");
     }
 
     /**
@@ -1188,7 +1166,7 @@ class Client
     {
         $adGroupId = $data["adGroupId"];
         unset($data["adGroupId"]);
-        return $this->_operation("adGroups/{$adGroupId}/suggested/keywords", $data);
+        return $this->operation("adGroups/{$adGroupId}/suggested/keywords", $data);
     }
 
     /**
@@ -1200,7 +1178,7 @@ class Client
     {
         $adGroupId = $data["adGroupId"];
         unset($data["adGroupId"]);
-        return $this->_operation("adGroups/{$adGroupId}/suggested/keywords/extended", $data);
+        return $this->operation("adGroups/{$adGroupId}/suggested/keywords/extended", $data);
     }
 
     /**
@@ -1212,7 +1190,7 @@ class Client
     {
         $asin = $data["asin"];
         unset($data["asin"]);
-        return $this->_operation("asins/{$asin}/suggested/keywords", $data);
+        return $this->operation("asins/{$asin}/suggested/keywords", $data);
     }
 
     /**
@@ -1222,7 +1200,7 @@ class Client
      */
     public function bulkGetAsinKeywordSuggestions($data)
     {
-        return $this->_operation("asins/suggested/keywords", $data, "POST");
+        return $this->operation("asins/suggested/keywords", $data, "POST");
     }
 
     /**
@@ -1233,7 +1211,7 @@ class Client
      */
     public function getStores($data = null)
     {
-        return $this->_operation("stores", $data);
+        return $this->operation("stores", $data);
     }
 
     /**
@@ -1244,7 +1222,7 @@ class Client
      */
     public function getStoresByBrandEntityId(int $brandEntityId)
     {
-        return $this->_operation("stores/{$brandEntityId}");
+        return $this->operation("stores/{$brandEntityId}");
     }
 
     /**
@@ -1255,7 +1233,7 @@ class Client
      */
     public function requestSnapshot($recordType, $data = null)
     {
-        return $this->_operation("{$recordType}/snapshot", $data, "POST");
+        return $this->operation("{$recordType}/snapshot", $data, "POST");
     }
 
     /**
@@ -1265,11 +1243,11 @@ class Client
      */
     public function getSnapshot($snapshotId)
     {
-        $req = $this->_operation("snapshots/{$snapshotId}");
+        $req = $this->operation("snapshots/{$snapshotId}");
         if ($req["success"]) {
             $json = json_decode($req["response"], true);
             if ($json["status"] == "SUCCESS") {
-                return $this->_download($json["location"]);
+                return $this->download($json["location"]);
             }
         }
         return $req;
@@ -1294,9 +1272,9 @@ class Client
             }
         }
         if (!$type && $this->apiVersion == 'v2') {
-            $this->_logAndThrow("Unable to perform request. No type is set");
+            $this->logAndThrow("Unable to perform request. No type is set");
         }
-        return $this->_operation($type . "{$recordType}/report", $data, "POST");
+        return $this->operation($type . "{$recordType}/report", $data, "POST");
     }
 
     /**
@@ -1306,11 +1284,11 @@ class Client
      */
     public function getReport($reportId)
     {
-        $req = $this->_operation("reports/{$reportId}");
+        $req = $this->operation("reports/{$reportId}");
         if ($req["success"]) {
             $json = json_decode($req["response"], true);
             if ($json["status"] == "SUCCESS") {
-                return $this->_download($json["location"]);
+                return $this->download($json["location"]);
             }
         }
         return $req;
@@ -1325,7 +1303,7 @@ class Client
      */
     public function listPortfolios($data = null)
     {
-        return $this->_operation("portfolios", $data);
+        return $this->operation("portfolios", $data);
     }
 
     /**
@@ -1335,7 +1313,7 @@ class Client
      */
     public function listPortfoliosEx($data = null)
     {
-        return $this->_operation("portfolios/extended", $data);
+        return $this->operation("portfolios/extended", $data);
     }
 
     /**
@@ -1345,7 +1323,7 @@ class Client
      */
     public function getPortfolio(int $portfolioId)
     {
-        return $this->_operation('portfolios/' . $portfolioId);
+        return $this->operation('portfolios/' . $portfolioId);
     }
 
     /**
@@ -1355,7 +1333,7 @@ class Client
      */
     public function getPortfolioEx(int $portfolioId)
     {
-        return $this->_operation('portfolios/extended/' . $portfolioId);
+        return $this->operation('portfolios/extended/' . $portfolioId);
     }
 
     /**
@@ -1365,7 +1343,7 @@ class Client
      */
     public function createPortfolios(array $data)
     {
-        return $this->_operation('portfolios', $data, 'POST');
+        return $this->operation('portfolios', $data, 'POST');
     }
 
     /**
@@ -1375,7 +1353,7 @@ class Client
      */
     public function updatePortfolios(array $data)
     {
-        return $this->_operation('portfolios', $data, 'PUT');
+        return $this->operation('portfolios', $data, 'PUT');
     }
 
     //end of portfolios
@@ -1392,7 +1370,7 @@ class Client
      */
     public function generateTargetsProductRecommendations(array $data): array
     {
-        return $this->_operation("sp/targets/productRecommendations", $data, 'POST');
+        return $this->operation("sp/targets/productRecommendations", $data, 'POST');
     }
 
     /**
@@ -1405,7 +1383,7 @@ class Client
      */
     public function getTargetingClause(int $targetId): array
     {
-        return $this->_operation("sp/targets/" . $targetId);
+        return $this->operation("sp/targets/" . $targetId);
     }
 
     /**
@@ -1418,7 +1396,7 @@ class Client
      */
     public function getTargetingClauseEx(int $targetId): array
     {
-        return $this->_operation("sp/targets/extended/" . $targetId);
+        return $this->operation("sp/targets/extended/" . $targetId);
     }
 
     /**
@@ -1431,7 +1409,7 @@ class Client
      */
     public function listTargetingClauses($data = null): array
     {
-        return $this->_operation("sp/targets", $data);
+        return $this->operation("sp/targets", $data);
     }
 
     /**
@@ -1444,7 +1422,7 @@ class Client
      */
     public function listTargetingClausesEx($data = null): array
     {
-        return $this->_operation("sp/targets/extended", $data);
+        return $this->operation("sp/targets/extended", $data);
     }
 
     /**
@@ -1457,7 +1435,7 @@ class Client
      */
     public function createTargetingClauses(array $data): array
     {
-        return $this->_operation("sp/targets", $data, 'POST');
+        return $this->operation("sp/targets", $data, 'POST');
     }
 
     /**
@@ -1470,7 +1448,7 @@ class Client
      */
     public function updateTargetingClauses(array $data): array
     {
-        return $this->_operation("sp/targets", $data, 'PUT');
+        return $this->operation("sp/targets", $data, 'PUT');
     }
 
     /**
@@ -1483,7 +1461,7 @@ class Client
      */
     public function archiveTargetingClause(int $targetId): array
     {
-        return $this->_operation("sp/targets/" . $targetId, 'DELETE');
+        return $this->operation("sp/targets/" . $targetId, 'DELETE');
     }
 
 
@@ -1497,7 +1475,7 @@ class Client
      */
     public function getTargetingCategories(array $data): array
     {
-        return $this->_operation("sp/targets/categories", $data);
+        return $this->operation("sp/targets/categories", $data);
     }
 
     /**
@@ -1510,7 +1488,7 @@ class Client
      */
     public function getBrandRecommendations(array $data): array
     {
-        return $this->_operation("sp/targets/brands", $data);
+        return $this->operation("sp/targets/brands", $data);
     }
 
     /**
@@ -1523,7 +1501,7 @@ class Client
      */
     public function getNegativeTargetingClause(int $targetId): array
     {
-        return $this->_operation("sp/negativeTargets/" . $targetId);
+        return $this->operation("sp/negativeTargets/" . $targetId);
     }
 
     /**
@@ -1536,7 +1514,7 @@ class Client
      */
     public function getNegativeTargetingClauseEx(int $targetId): array
     {
-        return $this->_operation("sp/negativeTargets/extended/" . $targetId);
+        return $this->operation("sp/negativeTargets/extended/" . $targetId);
     }
 
     /**
@@ -1549,7 +1527,7 @@ class Client
      */
     public function listNegativeTargetingClauses($data = null): array
     {
-        return $this->_operation("sp/negativeTargets", $data);
+        return $this->operation("sp/negativeTargets", $data);
     }
 
     /**
@@ -1562,7 +1540,7 @@ class Client
      */
     public function listNegativeTargetingClausesEx($data = null): array
     {
-        return $this->_operation("sp/negativeTargets/extended", $data);
+        return $this->operation("sp/negativeTargets/extended", $data);
     }
 
     //
@@ -1577,7 +1555,7 @@ class Client
      */
     public function createNegativeTargetingClauses(array $data): array
     {
-        return $this->_operation("sp/negativeTargets", $data, 'POST');
+        return $this->operation("sp/negativeTargets", $data, 'POST');
     }
 
     /**
@@ -1590,7 +1568,7 @@ class Client
      */
     public function updateNegativeTargetingClauses(array $data): array
     {
-        return $this->_operation("sp/negativeTargets", $data, 'PUT');
+        return $this->operation("sp/negativeTargets", $data, 'PUT');
     }
 
     /**
@@ -1603,7 +1581,7 @@ class Client
      */
     public function archiveNegativeTargetingClause(int $targetId): array
     {
-        return $this->_operation("sp/negativeTargets/" . $targetId, 'DELETE');
+        return $this->operation("sp/negativeTargets/" . $targetId, 'DELETE');
     }
 
     //end of PAT
@@ -1619,7 +1597,7 @@ class Client
      */
     public function getBrands($data = null): array
     {
-        return $this->_operation("brands", $data);
+        return $this->operation("brands", $data);
     }
 
     /**
@@ -1631,7 +1609,7 @@ class Client
      */
     public function getStoreAssets($data = null): array
     {
-        return $this->_operation("/stores/assets", $data);
+        return $this->operation("/stores/assets", $data);
     }
 
     /**
@@ -1646,7 +1624,7 @@ class Client
         if (!isset($data['pageUrl'])) {
             throw new \Exception("pageUrl should be set as GET param");
         }
-        return $this->_operation("pageAsins", $data);
+        return $this->operation("pageAsins", $data);
     }
 
     /**
@@ -1657,7 +1635,7 @@ class Client
      */
     public function listSponsoredBrandCampaigns($data = null): array
     {
-        return $this->_operation("sb/campaigns", $data);
+        return $this->operation("sb/campaigns", $data);
     }
 
     /**
@@ -1668,7 +1646,7 @@ class Client
      */
     public function createSponsoredBrandCampaigns(array $data): array
     {
-        return $this->_operation("sb/campaigns", $data, 'POST');
+        return $this->operation("sb/campaigns", $data, 'POST');
     }
 
     /**
@@ -1679,7 +1657,7 @@ class Client
      */
     public function updateSponsoredBrandCampaigns(array $data): array
     {
-        return $this->_operation("sb/campaigns", $data, 'PUT');
+        return $this->operation("sb/campaigns", $data, 'PUT');
     }
 
 
@@ -1691,7 +1669,7 @@ class Client
      */
     public function getSponsoredBrandCampaign(int $campaignId): array
     {
-        return $this->_operation("sb/campaigns/{$campaignId}");
+        return $this->operation("sb/campaigns/{$campaignId}");
     }
 
     /**
@@ -1702,7 +1680,7 @@ class Client
      */
     public function archiveSponsoredBrandCampaign(int $campaignId): array
     {
-        return $this->_operation("sb/campaigns/{$campaignId}", null, 'DELETE');
+        return $this->operation("sb/campaigns/{$campaignId}", null, 'DELETE');
     }
 
     /**
@@ -1713,7 +1691,7 @@ class Client
      */
     public function getSponsoredBrandBidRecommendations(array $data)
     {
-        return $this->_operation("sb/recommendations/bids", $data, 'POST');
+        return $this->operation("sb/recommendations/bids", $data, 'POST');
     }
 
 
@@ -1724,7 +1702,7 @@ class Client
      * @param bool $gunzip
      * @return array
      */
-    private function _download($location, $gunzip = false)
+    private function download($location, $gunzip = false)
     {
         $headers = array();
 
@@ -1742,16 +1720,16 @@ class Client
         $request->setOption(CURLOPT_HTTPHEADER, $headers);
         $request->setOption(CURLOPT_USERAGENT, $this->userAgent);
         if ($this->config['saveFile'] && $gunzip) {
-            return $this->_saveDownloaded($request);
+            return $this->saveDownloaded($request);
         }
 
         if ($gunzip) {
-            $response = $this->_executeRequest($request);
+            $response = $this->executeRequest($request);
             $response["response"] = gzdecode($response["response"]);
             return $response;
         }
 
-        return $this->_executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -1760,16 +1738,16 @@ class Client
      * @param CurlRequest $request
      * @return array
      */
-    protected function _saveDownloaded(CurlRequest $request): array
+    protected function saveDownloaded(CurlRequest $request): array
     {
         $filePath = '/tmp/' . uniqid(microtime(true) . '_amzn_ads_') . '.json.gz';
         $tmpFile = fopen($filePath, 'w+');
         $request->setOption(CURLOPT_HEADER, 0);
         $request->setOption(CURLOPT_FOLLOWLOCATION, 1);
         $request->setOption(CURLOPT_FILE, $tmpFile);
-        $response = $this->_executeRequest($request);
+        $response = $this->executeRequest($request);
         if ($response['success']) {
-            $extractedFile = $this->_extractFile($filePath);
+            $extractedFile = $this->extractFile($filePath);
             fclose($tmpFile);
             unlink($filePath);
             $response['response_type'] = 'file';
@@ -1786,7 +1764,7 @@ class Client
      * @param string $filePath
      * @return string
      */
-    protected function _extractFile(string $filePath): string
+    protected function extractFile(string $filePath): string
     {
         $bufferSize = 4096; // read 4kb at a time
         $unzipFilePath = str_replace('.gz', '', $filePath);
@@ -1809,7 +1787,7 @@ class Client
      * @return array
      * @throws \Exception
      */
-    private function _operation($interface, $params = [], $method = "GET")
+    private function operation($interface, $params = [], $method = "GET")
     {
         $headers = array(
             "Authorization: bearer {$this->config["accessToken"]}",
@@ -1850,21 +1828,21 @@ class Client
                 }
                 break;
             default:
-                $this->_logAndThrow("Unknown verb {$method}.");
+                $this->logAndThrow("Unknown verb {$method}.");
         }
 
         $request->setOption(CURLOPT_URL, $url);
         $request->setOption(CURLOPT_HTTPHEADER, $headers);
         $request->setOption(CURLOPT_USERAGENT, $this->userAgent);
         $request->setOption(CURLOPT_CUSTOMREQUEST, strtoupper($method));
-        return $this->_executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
      * @param CurlRequest $request
      * @return array
      */
-    protected function _executeRequest(CurlRequest $request)
+    protected function executeRequest(CurlRequest $request)
     {
         $response = $request->execute();
         $this->requestId = $request->requestId;
@@ -1873,7 +1851,7 @@ class Client
 
         if ($response_info["http_code"] == 307) {
             /* application/octet-stream */
-            return $this->_download($response_info["redirect_url"], true);
+            return $this->download($response_info["redirect_url"], true);
         }
 
         if (!preg_match("/^(2|3)\d{2}$/", $response_info["http_code"])) {
@@ -1903,17 +1881,17 @@ class Client
      * @return bool
      * @throws \Exception
      */
-    private function _validateConfig($config)
+    private function validateConfig($config)
     {
         if (is_null($config)) {
-            $this->_logAndThrow("'config' cannot be null.");
+            $this->logAndThrow("'config' cannot be null.");
         }
 
         foreach ($config as $k => $v) {
             if (array_key_exists($k, $this->config)) {
                 $this->config[$k] = $v;
             } else {
-                $this->_logAndThrow("Unknown parameter '{$k}' in config.");
+                $this->logAndThrow("Unknown parameter '{$k}' in config.");
             }
         }
         return true;
@@ -1923,45 +1901,45 @@ class Client
      * @return bool
      * @throws \Exception
      */
-    private function _validateConfigParameters()
+    private function validateConfigParameters()
     {
         foreach ($this->config as $k => $v) {
             if (is_null($v) && $k !== "accessToken" && $k !== "refreshToken") {
-                $this->_logAndThrow("Missing required parameter '{$k}'.");
+                $this->logAndThrow("Missing required parameter '{$k}'.");
             }
             switch ($k) {
                 case "clientId":
                     if (!preg_match("/^amzn1\.application-oa2-client\.[a-z0-9]{32}$/i", $v)) {
-                        $this->_logAndThrow("Invalid parameter value for clientId.");
+                        $this->logAndThrow("Invalid parameter value for clientId.");
                     }
                     break;
                 case "clientSecret":
                     if (!preg_match("/^[a-z0-9]{64}$/i", $v)) {
-                        $this->_logAndThrow("Invalid parameter value for clientSecret.");
+                        $this->logAndThrow("Invalid parameter value for clientSecret.");
                     }
                     break;
                 case "accessToken":
                     if (!is_null($v)) {
                         if (!preg_match("/^Atza(\||%7C|%7c).*$/", $v)) {
-                            $this->_logAndThrow("Invalid parameter value for accessToken.");
+                            $this->logAndThrow("Invalid parameter value for accessToken.");
                         }
                     }
                     break;
                 case "refreshToken":
                     if (!is_null($v)) {
                         if (!preg_match("/^Atzr(\||%7C|%7c).*$/", $v)) {
-                            $this->_logAndThrow("Invalid parameter value for refreshToken.");
+                            $this->logAndThrow("Invalid parameter value for refreshToken.");
                         }
                     }
                     break;
                 case "sandbox":
                     if (!is_bool($v)) {
-                        $this->_logAndThrow("Invalid parameter value for sandbox.");
+                        $this->logAndThrow("Invalid parameter value for sandbox.");
                     }
                     break;
                 case "saveFile":
                     if (!is_bool($v)) {
-                        $this->_logAndThrow("Invalid parameter value for saveFile.");
+                        $this->logAndThrow("Invalid parameter value for saveFile.");
                     }
                     break;
             }
@@ -1973,7 +1951,7 @@ class Client
      * @return bool
      * @throws \Exception
      */
-    private function _setEndpoints()
+    private function setEndpoints()
     {
         /* check if region exists and set api/token endpoints */
         if (array_key_exists(strtolower($this->config["region"]), $this->endpoints)) {
@@ -1985,7 +1963,7 @@ class Client
             }
             $this->tokenUrl = $this->endpoints[$region_code]["tokenUrl"];
         } else {
-            $this->_logAndThrow("Invalid region.");
+            $this->logAndThrow("Invalid region.");
         }
         return true;
     }
@@ -1994,7 +1972,7 @@ class Client
      * @param $message
      * @throws \Exception
      */
-    private function _logAndThrow($message)
+    private function logAndThrow($message)
     {
         error_log($message, 0);
         throw new \Exception($message);
