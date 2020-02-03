@@ -129,7 +129,7 @@ class Client
      */
     public function listProfiles()
     {
-        return $this->_operation("profiles");
+        return $this->operation("profiles");
     }
 
     /**
@@ -139,7 +139,7 @@ class Client
      */
     public function registerProfile($data)
     {
-        return $this->_operation("profiles/register", $data, "PUT");
+        return $this->operation("profiles/register", $data, "PUT");
     }
 
     /**
@@ -149,7 +149,7 @@ class Client
      */
     public function registerProfileStatus($profileId)
     {
-        return $this->_operation("profiles/register/{$profileId}/status");
+        return $this->operation("profiles/register/{$profileId}/status");
     }
 
     /**
@@ -159,7 +159,7 @@ class Client
      */
     public function getProfile($profileId)
     {
-        return $this->_operation("profiles/{$profileId}");
+        return $this->operation("profiles/{$profileId}");
     }
 
     /**
@@ -169,7 +169,7 @@ class Client
      */
     public function updateProfiles($data)
     {
-        return $this->_operation("profiles", $data, "PUT");
+        return $this->operation("profiles", $data, "PUT");
     }
 
     /**
