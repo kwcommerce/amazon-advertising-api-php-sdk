@@ -1,6 +1,11 @@
 <?php
+
 namespace AmazonAdvertisingApi;
 
+/**
+ * Class CurlRequest
+ * Executes requests to Amazon Ads API
+ */
 class CurlRequest
 {
     private $handle = null;
@@ -22,7 +27,7 @@ class CurlRequest
         if (defined("CURLOPT_IPRESOLVE")) {
             curl_setopt($this->handle, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         }
-        curl_setopt($this->handle, CURLOPT_HEADERFUNCTION, array($this, "_handleHeaderLine"));
+        curl_setopt($this->handle, CURLOPT_HEADERFUNCTION, array($this, "handleHeaderLine"));
     }
 
     public function setOption($name, $value)
@@ -50,7 +55,7 @@ class CurlRequest
         curl_close($this->handle);
     }
 
-    private function _handleHeaderLine($ch, $line)
+    private function handleHeaderLine($ch, $line)
     {
         $matches = array();
         if (preg_match("/x-amz-request-id:\ \S+/", $line)) {

@@ -1,9 +1,11 @@
 <?php
 
-
 namespace AmazonAdvertisingApi;
 
-
+/**
+ * Trait SponsoredBrandsRequests
+ * Contains requests' wrappers of Amazon Ads API for Sponsored Brands
+ */
 trait SponsoredBrandsRequests
 {
     /**
@@ -14,7 +16,7 @@ trait SponsoredBrandsRequests
      */
     public function listSponsoredBrandAdGroups($data = null): array
     {
-        return $this->_operation("sb/adGroups", $data);
+        return $this->operation("sb/adGroups", $data);
     }
 
     /**
@@ -25,7 +27,7 @@ trait SponsoredBrandsRequests
      */
     public function getSponsoredBrandAdGroup(int $adGroupId): array
     {
-        return $this->_operation("sb/adGroups/{$adGroupId}");
+        return $this->operation("sb/adGroups/{$adGroupId}");
     }
 
     /**
@@ -37,7 +39,7 @@ trait SponsoredBrandsRequests
      */
     public function listSponsoredBrandKeywords($data = null): array
     {
-        return $this->_operation("sb/keywords", $data);
+        return $this->operation("sb/keywords", $data);
     }
 
     /**
@@ -49,7 +51,7 @@ trait SponsoredBrandsRequests
      */
     public function updateSponsoredBrandKeywords(array $data): array
     {
-        return $this->_operation("sb/keywords", $data, "PUT");
+        return $this->operation("sb/keywords", $data, "PUT");
     }
 
     /**
@@ -60,7 +62,7 @@ trait SponsoredBrandsRequests
      */
     public function createSponsoredBrandKeywords(array $data): array
     {
-        return $this->_operation("sb/keywords", $data, "POST");
+        return $this->operation("sb/keywords", $data, "POST");
     }
 
     /**
@@ -72,7 +74,7 @@ trait SponsoredBrandsRequests
      */
     public function getSponsoredBrandKeyword(int $keywordId): array
     {
-        return $this->_operation("sb/keywords/{$keywordId}");
+        return $this->operation("sb/keywords/{$keywordId}");
     }
 
     /**
@@ -84,6 +86,6 @@ trait SponsoredBrandsRequests
      */
     public function archiveSponsoredBrandKeyword(int $keywordId): array
     {
-        return $this->_operation("sb/keywords/{$keywordId}", "DELETE");
+        return $this->operation("sb/keywords/{$keywordId}", "DELETE");
     }
 }
