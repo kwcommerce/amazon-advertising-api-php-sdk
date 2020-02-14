@@ -1683,16 +1683,6 @@ class Client
         return $this->operation("sb/campaigns/{$campaignId}", null, 'DELETE');
     }
 
-    /**
-     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Bid%20recommendations/getBidsRecommendations
-     * @param array $data
-     * @return array
-     * @throws \Exception
-     */
-    public function getSponsoredBrandBidRecommendations(array $data)
-    {
-        return $this->operation("sb/recommendations/bids", $data, 'POST');
-    }
 
 
     //end of SB v3
