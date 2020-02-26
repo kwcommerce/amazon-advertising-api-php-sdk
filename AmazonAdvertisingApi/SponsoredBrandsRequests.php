@@ -91,6 +91,30 @@ trait SponsoredBrandsRequests
     }
 
     /**
+     * Create one or more new negative keywords.
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20keywords/createNegativeKeywords
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function createSponsoredBrandNegativeKeywords(array $data): array
+    {
+        return $this->operation("sb/negativeKeywords", $data, "POST");
+    }
+
+    /**
+     * Updates one or more new negative keywords.
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20keywords/updateNegativeKeywords
+     * @param array $data
+     * @return array
+     * @throws \Exception
+     */
+    public function updateSponsoredBrandNegativeKeywords(array $data): array
+    {
+        return $this->operation("sb/negativeKeywords", $data, "PUT");
+    }
+
+    /**
      * Gets a list of product targets associated with the client identifier passed in the
      * authorization header, filtered by specified criteria.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Product%20targeting/listTargets
