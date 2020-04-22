@@ -2,6 +2,8 @@
 
 namespace AmazonAdvertisingApi;
 
+use Exception;
+
 /**
  * Trait SponsoredBrandsRequests
  * Contains requests' wrappers of Amazon Ads API for Sponsored Brands
@@ -9,10 +11,12 @@ namespace AmazonAdvertisingApi;
 trait SponsoredBrandsRequests
 {
     /**
+     * Gets an array of ad groups associated with the client identifier passed in
+     * the authorization header, filtered by specified criteria.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/listAdGroups
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listSponsoredBrandAdGroups($data = null): array
     {
@@ -20,10 +24,11 @@ trait SponsoredBrandsRequests
     }
 
     /**
+     * Gets an ad group specified by identifier.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/getAdGroups
      * @param int $adGroupId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSponsoredBrandAdGroup(int $adGroupId): array
     {
@@ -35,7 +40,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Keywords/listKeywords
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listSponsoredBrandKeywords($data = null): array
     {
@@ -47,7 +52,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Keywords/updateKeywords
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateSponsoredBrandKeywords(array $data): array
     {
@@ -59,7 +64,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Keywords/createKeywords
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createSponsoredBrandKeywords(array $data): array
     {
@@ -71,7 +76,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Keywords/getKeyword
      * @param int $keywordId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSponsoredBrandKeyword(int $keywordId): array
     {
@@ -83,7 +88,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Keywords/archiveKeyword
      * @param int $keywordId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveSponsoredBrandKeyword(int $keywordId): array
     {
@@ -91,11 +96,23 @@ trait SponsoredBrandsRequests
     }
 
     /**
+     * Gets an array of negative keywords, filtered by optional criteria.
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20keywords/listNegativeKeywords
+     * @param null $data
+     * @return array
+     * @throws Exception
+     */
+    public function listSponsoredBrandNegativeKeywords($data = null): array
+    {
+        return $this->operation("sb/negativeKeywords", $data);
+    }
+
+    /**
      * Create one or more new negative keywords.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20keywords/createNegativeKeywords
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createSponsoredBrandNegativeKeywords(array $data): array
     {
@@ -107,11 +124,35 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20keywords/updateNegativeKeywords
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateSponsoredBrandNegativeKeywords(array $data): array
     {
         return $this->operation("sb/negativeKeywords", $data, "PUT");
+    }
+
+    /**
+     * Gets a negative keyword specified by identifier.
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20keywords/getNegativeKeyword
+     * @param int $keywordId
+     * @return array
+     * @throws Exception
+     */
+    public function getSponsoredBrandNegativeKeyword(int $keywordId): array
+    {
+        return $this->operation("sb/negativeKeywords/{$keywordId}");
+    }
+
+    /**
+     * Archives a negative keyword specified by identifier.
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20keywords/archiveNegativeKeyword
+     * @param int $keywordId
+     * @return array
+     * @throws Exception
+     */
+    public function archiveSponsoredBrandNegativeKeyword(int $keywordId): array
+    {
+        return $this->operation("sb/negativeKeywords/{$keywordId}", "DELETE");
     }
 
     /**
@@ -120,7 +161,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Product%20targeting/listTargets
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listSponsoredBrandTargets(array $data): array
     {
@@ -132,7 +173,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Product%20targeting/updateTargets
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateSponsoredBrandTargets(array $data): array
     {
@@ -144,7 +185,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Product%20targeting/createTargets
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createSponsoredBrandTargets(array $data): array
     {
@@ -156,7 +197,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Product%20targeting/getTarget
      * @param int $targetId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSponsoredBrandTarget(int $targetId): array
     {
@@ -169,7 +210,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Product%20targeting/archiveTarget
      * @param int $targetId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveSponsoredBrandTarget(int $targetId): array
     {
@@ -181,7 +222,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Product%20targeting/createTargets
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function batchGetSponsoredBrandTargets(array $data): array
     {
@@ -194,7 +235,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20product%20targeting/listNegativeTargets
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listSponsoredBrandNegativeTargets(array $data): array
     {
@@ -206,7 +247,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20product%20targeting/updateNegativeTargets
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateSponsoredBrandNegativeTargets(array $data): array
     {
@@ -218,7 +259,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20product%20targeting/createNegativeTargets
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createSponsoredBrandNegativeTargets(array $data): array
     {
@@ -230,7 +271,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20product%20targeting/getNegativeTarget
      * @param int $negativeTargetId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSponsoredBrandNegativeTarget(int $negativeTargetId): array
     {
@@ -243,7 +284,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20product%20targeting/archiveNegativeTarget
      * @param int $negativeTargetId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveSponsoredBrandNegativeTarget(int $negativeTargetId): array
     {
@@ -255,7 +296,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20product%20targeting/batchGetNegativeTargets
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function batchGetSponsoredBrandNegativeTargets(array $data): array
     {
@@ -267,7 +308,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Targeting%20recommendations/getProductRecommendations
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listSponsoredBrandTargetsProductRecommendations(array $data): array
     {
@@ -279,7 +320,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Targeting%20recommendations/getTargetingCategories
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listSponsoredBrandTargetsCategoryRecommendations(array $data): array
     {
@@ -291,7 +332,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Targeting%20recommendations/getBrandRecommendations
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listSponsoredBrandTargetsBrandRecommendations(array $data): array
     {
@@ -302,7 +343,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Bid%20recommendations/getBidsRecommendations
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSponsoredBrandBidRecommendations(array $data)
     {
@@ -313,7 +354,7 @@ trait SponsoredBrandsRequests
      * Gets an array of draft campaign objects.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Drafts/listDraftCampaigns
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listSponsoredBrandDraftCampaigns(): array
     {
@@ -325,7 +366,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Drafts/createDraftCampaigns
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createSponsoredBrandDraftCampaigns(array $data): array
     {
@@ -337,7 +378,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Drafts/updateDraftCampaigns
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateSponsoredBrandDraftCampaigns(array $data): array
     {
@@ -349,7 +390,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Drafts/getDraftCampaign
      * @param int $draftCampaignId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSponsoredBrandDraftCampaigns(int $draftCampaignId): array
     {
@@ -361,7 +402,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Drafts/deleteDraftCampaign
      * @param int $draftCampaignId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveSponsoredBrandDraftCampaigns(int $draftCampaignId): array
     {
@@ -373,7 +414,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Drafts/submitDraftCampaign
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function submitSponsoredBrandDraftCampaigns(array $data): array
     {
@@ -385,7 +426,7 @@ trait SponsoredBrandsRequests
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Moderation/get_sb_moderation_campaigns__campaignId_
      * @param int $campaignId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function moderationSponsoredBrandCampaign(int $campaignId): array
     {
