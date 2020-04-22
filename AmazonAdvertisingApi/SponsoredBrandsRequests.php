@@ -11,6 +11,8 @@ use Exception;
 trait SponsoredBrandsRequests
 {
     /**
+     * Gets an array of ad groups associated with the client identifier passed in
+     * the authorization header, filtered by specified criteria.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/listAdGroups
      * @param null $data
      * @return array
@@ -22,6 +24,7 @@ trait SponsoredBrandsRequests
     }
 
     /**
+     * Gets an ad group specified by identifier.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/getAdGroups
      * @param int $adGroupId
      * @return array
@@ -93,6 +96,18 @@ trait SponsoredBrandsRequests
     }
 
     /**
+     * Gets an array of negative keywords, filtered by optional criteria.
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20keywords/listNegativeKeywords
+     * @param null $data
+     * @return array
+     * @throws Exception
+     */
+    public function listSponsoredBrandNegativeKeywords($data = null): array
+    {
+        return $this->operation("sb/negativeKeywords", $data);
+    }
+
+    /**
      * Create one or more new negative keywords.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20keywords/createNegativeKeywords
      * @param array $data
@@ -114,6 +129,30 @@ trait SponsoredBrandsRequests
     public function updateSponsoredBrandNegativeKeywords(array $data): array
     {
         return $this->operation("sb/negativeKeywords", $data, "PUT");
+    }
+
+    /**
+     * Gets a negative keyword specified by identifier.
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20keywords/getNegativeKeyword
+     * @param int $keywordId
+     * @return array
+     * @throws Exception
+     */
+    public function getSponsoredBrandNegativeKeyword(int $keywordId): array
+    {
+        return $this->operation("sb/negativeKeywords/{$keywordId}");
+    }
+
+    /**
+     * Archives a negative keyword specified by identifier.
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Negative%20keywords/archiveNegativeKeyword
+     * @param int $keywordId
+     * @return array
+     * @throws Exception
+     */
+    public function archiveSponsoredBrandNegativeKeyword(int $keywordId): array
+    {
+        return $this->operation("sb/negativeKeywords/{$keywordId}", "DELETE");
     }
 
     /**
