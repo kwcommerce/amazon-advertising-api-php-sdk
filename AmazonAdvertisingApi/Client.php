@@ -2,6 +2,8 @@
 
 namespace AmazonAdvertisingApi;
 
+use Exception;
+
 require_once "Versions.php";
 require_once "Regions.php";
 require_once "CurlRequest.php";
@@ -14,6 +16,7 @@ require_once "SponsoredBrandsRequests.php";
 class Client
 {
     use SponsoredBrandsRequests;
+    use SponsoredDisplayRequests;
 
     private $config = array(
         "clientId" => null,
@@ -23,7 +26,8 @@ class Client
         "refreshToken" => null,
         "sandbox" => false,
         "saveFile" => false,
-        "apiVersion" => 'v1');
+        "apiVersion" => 'v1'
+    );
 
     private $apiVersion = null;
     private $applicationVersion = null;
@@ -42,7 +46,7 @@ class Client
     /**
      * Client constructor.
      * @param $config
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct($config)
     {
@@ -80,7 +84,7 @@ class Client
 
     /**
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function doRefreshToken()
     {
@@ -95,7 +99,8 @@ class Client
             "grant_type" => "refresh_token",
             "refresh_token" => $refresh_token,
             "client_id" => $this->config["clientId"],
-            "client_secret" => $this->config["clientSecret"]);
+            "client_secret" => $this->config["clientSecret"]
+        );
 
         $data = "";
         foreach ($params as $k => $v) {
@@ -117,7 +122,9 @@ class Client
         if (is_array($response_array) && array_key_exists("access_token", $response_array)) {
             $this->config["accessToken"] = $response_array["access_token"];
         } else {
-            $this->logAndThrow("Unable to refresh token. 'access_token' not found in response. " . print_r($response, true));
+            $this->logAndThrow(
+                "Unable to refresh token. 'access_token' not found in response. " . print_r($response, true)
+            );
         }
 
         return $response;
@@ -125,7 +132,7 @@ class Client
 
     /**
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listProfiles()
     {
@@ -135,7 +142,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function registerProfile($data)
     {
@@ -145,7 +152,7 @@ class Client
     /**
      * @param $profileId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function registerProfileStatus($profileId)
     {
@@ -155,7 +162,7 @@ class Client
     /**
      * @param $profileId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getProfile($profileId)
     {
@@ -165,7 +172,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateProfiles($data)
     {
@@ -176,7 +183,7 @@ class Client
      * @param $campaignId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getCampaign($campaignId, $data = null)
     {
@@ -197,7 +204,7 @@ class Client
      * @param $campaignId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getCampaignEx($campaignId, $data = null)
     {
@@ -216,7 +223,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createCampaigns($data)
     {
@@ -235,7 +242,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateCampaigns($data)
     {
@@ -255,7 +262,7 @@ class Client
      * @param $campaignId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveCampaign($campaignId, $data = null)
     {
@@ -274,7 +281,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listCampaigns($data = null)
     {
@@ -306,7 +313,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listCampaignsEx($data = null)
     {
@@ -328,7 +335,7 @@ class Client
      * @param $adGroupId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAdGroup($adGroupId, $data = null)
     {
@@ -350,7 +357,7 @@ class Client
      * @param $adGroupId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAdGroupEx($adGroupId, $data = null)
     {
@@ -371,7 +378,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createAdGroups($data)
     {
@@ -393,7 +400,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateAdGroups($data)
     {
@@ -419,7 +426,7 @@ class Client
      * @param $adGroupId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveAdGroup($adGroupId, $data = null)
     {
@@ -440,7 +447,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listAdGroups($data = null)
     {
@@ -461,7 +468,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listAdGroupsEx($data = null)
     {
@@ -483,7 +490,7 @@ class Client
      * @param $keywordId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getBiddableKeyword($keywordId, $data = null)
     {
@@ -504,7 +511,7 @@ class Client
      * @param $keywordId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getBiddableKeywordEx($keywordId, $data = null)
     {
@@ -527,7 +534,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createBiddableKeywords($data)
     {
@@ -551,7 +558,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateBiddableKeywords($data)
     {
@@ -576,7 +583,7 @@ class Client
      * @param $keywordId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveBiddableKeyword($keywordId, $data = null)
     {
@@ -596,7 +603,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listBiddableKeywords($data = null)
     {
@@ -619,7 +626,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listBiddableKeywordsEx($data = null)
     {
@@ -640,7 +647,7 @@ class Client
      * @param $keywordId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getNegativeKeyword($keywordId, $data = null)
     {
@@ -664,7 +671,7 @@ class Client
      * @param $keywordId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getNegativeKeywordEx($keywordId, $data = null)
     {
@@ -687,7 +694,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createNegativeKeywords($data)
     {
@@ -711,7 +718,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateNegativeKeywords($data)
     {
@@ -736,7 +743,7 @@ class Client
      * @param $keywordId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveNegativeKeyword($keywordId, $data = null)
     {
@@ -759,7 +766,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listNegativeKeywords($data = null)
     {
@@ -779,7 +786,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listNegativeKeywordsEx($data = null)
     {
@@ -800,7 +807,7 @@ class Client
      * @param $keywordId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getCampaignNegativeKeyword($keywordId, $data = null)
     {
@@ -824,7 +831,7 @@ class Client
      * @param $keywordId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getCampaignNegativeKeywordEx($keywordId, $data = null)
     {
@@ -847,7 +854,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createCampaignNegativeKeywords($data)
     {
@@ -871,7 +878,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateCampaignNegativeKeywords($data)
     {
@@ -896,7 +903,7 @@ class Client
      * @param $keywordId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function removeCampaignNegativeKeyword($keywordId, $data = null)
     {
@@ -919,7 +926,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listCampaignNegativeKeywords($data = null)
     {
@@ -939,7 +946,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listCampaignNegativeKeywordsEx($data = null)
     {
@@ -960,7 +967,7 @@ class Client
      * @param $productAdId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getProductAd($productAdId, $data = null)
     {
@@ -985,7 +992,7 @@ class Client
      * @param $productAdId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getProductAdEx($productAdId, $data = null)
     {
@@ -1009,7 +1016,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createProductAds($data)
     {
@@ -1034,7 +1041,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateProductAds($data)
     {
@@ -1060,7 +1067,7 @@ class Client
      * @param $productAdId
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveProductAd($productAdId, $data = null)
     {
@@ -1084,7 +1091,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listProductAds($data = null)
     {
@@ -1105,7 +1112,7 @@ class Client
     /**
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listProductAdsEx($data = null)
     {
@@ -1126,7 +1133,7 @@ class Client
     /**
      * @param $adGroupId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAdGroupBidRecommendations($adGroupId)
     {
@@ -1136,7 +1143,7 @@ class Client
     /**
      * @param $keywordId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getKeywordBidRecommendations($keywordId)
     {
@@ -1147,20 +1154,21 @@ class Client
      * @param $adGroupId
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function bulkGetKeywordBidRecommendations($adGroupId, $data)
     {
         $data = array(
             "adGroupId" => $adGroupId,
-            "keywords" => $data);
+            "keywords" => $data
+        );
         return $this->operation("keywords/bidRecommendations", $data, "POST");
     }
 
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAdGroupKeywordSuggestions($data)
     {
@@ -1172,7 +1180,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAdGroupKeywordSuggestionsEx($data)
     {
@@ -1184,7 +1192,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAsinKeywordSuggestions($data)
     {
@@ -1196,7 +1204,7 @@ class Client
     /**
      * @param $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function bulkGetAsinKeywordSuggestions($data)
     {
@@ -1207,7 +1215,7 @@ class Client
      * GET /v2/stores
      * @param array|null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getStores($data = null)
     {
@@ -1218,7 +1226,7 @@ class Client
      * GET /v2stores/{$brandEntityId}
      * @param int $brandEntityId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getStoresByBrandEntityId(int $brandEntityId)
     {
@@ -1229,7 +1237,7 @@ class Client
      * @param $recordType
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function requestSnapshot($recordType, $data = null)
     {
@@ -1239,7 +1247,7 @@ class Client
     /**
      * @param $snapshotId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSnapshot($snapshotId)
     {
@@ -1257,12 +1265,11 @@ class Client
      * @param $recordType
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function requestReport($recordType, $data = null)
     {
-        $reportType = is_array($data) && isset($data['reportType']) ? $data['reportType'] : 'sponsoredProducts';
-        $type = $reportType == 'sponsoredProducts' ? 'sp' : ($reportType == 'sponsoredBrands' ? 'hsa' : null);
+        $type = $this->getCampaignTypeForReportRequest($data);
         if ($this->apiVersion == 'v1') {
             $type = null;
         } else {
@@ -1278,9 +1285,30 @@ class Client
     }
 
     /**
+     * @param array|null $data
+     * @return string
+     * @throws Exception
+     */
+    private function getCampaignTypeForReportRequest(?array $data): string
+    {
+        $reportType = is_array($data) && isset($data['reportType'])
+            ? $data['reportType']
+            : 'sponsoredProducts';
+        if ($reportType === 'sponsoredProducts') {
+            return 'sp';
+        } elseif ($reportType === 'sponsoredBrands') {
+            return 'sb';
+        } elseif ($reportType === 'sponsoredDisplay') {
+            return 'sd';
+        } else {
+            throw new Exception("Invalid reportType $reportType");
+        }
+    }
+
+    /**
      * @param $reportId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getReport($reportId)
     {
@@ -1299,7 +1327,7 @@ class Client
     /**
      * @param null|array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listPortfolios($data = null)
     {
@@ -1309,7 +1337,7 @@ class Client
     /**
      * @param null|array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listPortfoliosEx($data = null)
     {
@@ -1319,7 +1347,7 @@ class Client
     /**
      * @param int $portfolioId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getPortfolio(int $portfolioId)
     {
@@ -1329,7 +1357,7 @@ class Client
     /**
      * @param int $portfolioId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getPortfolioEx(int $portfolioId)
     {
@@ -1339,7 +1367,7 @@ class Client
     /**
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createPortfolios(array $data)
     {
@@ -1349,7 +1377,7 @@ class Client
     /**
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updatePortfolios(array $data)
     {
@@ -1366,7 +1394,7 @@ class Client
      *
      * @param array $data [pageSize => int(1-50), pageNumber => int, asins: string[]]
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function generateTargetsProductRecommendations(array $data): array
     {
@@ -1379,7 +1407,7 @@ class Client
      *
      * @param int $targetId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getTargetingClause(int $targetId): array
     {
@@ -1392,7 +1420,7 @@ class Client
      *
      * @param int $targetId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getTargetingClauseEx(int $targetId): array
     {
@@ -1405,7 +1433,7 @@ class Client
      *
      * @param array|null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listTargetingClauses($data = null): array
     {
@@ -1418,7 +1446,7 @@ class Client
      *
      * @param array|null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listTargetingClausesEx($data = null): array
     {
@@ -1431,7 +1459,7 @@ class Client
      *
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createTargetingClauses(array $data): array
     {
@@ -1444,7 +1472,7 @@ class Client
      *
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateTargetingClauses(array $data): array
     {
@@ -1457,7 +1485,7 @@ class Client
      *
      * @param int $targetId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveTargetingClause(int $targetId): array
     {
@@ -1471,7 +1499,7 @@ class Client
      *
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getTargetingCategories(array $data): array
     {
@@ -1484,7 +1512,7 @@ class Client
      *
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getBrandRecommendations(array $data): array
     {
@@ -1497,7 +1525,7 @@ class Client
      *
      * @param int $targetId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getNegativeTargetingClause(int $targetId): array
     {
@@ -1510,7 +1538,7 @@ class Client
      *
      * @param int $targetId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getNegativeTargetingClauseEx(int $targetId): array
     {
@@ -1523,7 +1551,7 @@ class Client
      *
      * @param array|null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listNegativeTargetingClauses($data = null): array
     {
@@ -1536,7 +1564,7 @@ class Client
      *
      * @param array|null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listNegativeTargetingClausesEx($data = null): array
     {
@@ -1551,7 +1579,7 @@ class Client
      *
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createNegativeTargetingClauses(array $data): array
     {
@@ -1564,7 +1592,7 @@ class Client
      *
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateNegativeTargetingClauses(array $data): array
     {
@@ -1577,7 +1605,7 @@ class Client
      *
      * @param int $targetId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveNegativeTargetingClause(int $targetId): array
     {
@@ -1593,7 +1621,7 @@ class Client
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Brands/getBrands
      * @param array|null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getBrands($data = null): array
     {
@@ -1605,7 +1633,7 @@ class Client
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Stores/listAssets
      * @param array|null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getStoreAssets($data = null): array
     {
@@ -1617,12 +1645,12 @@ class Client
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Landing%20page%20asins/listAsins
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getPageAsins(array $data): array
     {
         if (!isset($data['pageUrl'])) {
-            throw new \Exception("pageUrl should be set as GET param");
+            throw new Exception("pageUrl should be set as GET param");
         }
         return $this->operation("pageAsins", $data);
     }
@@ -1631,7 +1659,7 @@ class Client
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/listCampaigns
      * @param null $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function listSponsoredBrandCampaigns($data = null): array
     {
@@ -1642,7 +1670,7 @@ class Client
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/createCampaigns
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function createSponsoredBrandCampaigns(array $data): array
     {
@@ -1653,7 +1681,7 @@ class Client
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/updateCampaigns
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateSponsoredBrandCampaigns(array $data): array
     {
@@ -1665,7 +1693,7 @@ class Client
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/getCampaign
      * @param int $campaignId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSponsoredBrandCampaign(int $campaignId): array
     {
@@ -1676,7 +1704,7 @@ class Client
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/archiveCampaign
      * @param int $campaignId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function archiveSponsoredBrandCampaign(int $campaignId): array
     {
@@ -1775,7 +1803,7 @@ class Client
      * @param array $params
      * @param string $method
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     private function operation($interface, $params = [], $method = "GET")
     {
@@ -1852,24 +1880,28 @@ class Client
                     $requestId = json_decode($response, true)["requestId"];
                 }
             }
-            return array("success" => false,
+            return array(
+                "success" => false,
                 "code" => $response_info["http_code"],
                 "response" => $response,
                 'responseInfo' => $response_info,
-                "requestId" => $requestId);
+                "requestId" => $requestId
+            );
         } else {
-            return array("success" => true,
+            return array(
+                "success" => true,
                 "code" => $response_info["http_code"],
                 'responseInfo' => $response_info,
                 "response" => $response,
-                "requestId" => $this->requestId);
+                "requestId" => $this->requestId
+            );
         }
     }
 
     /**
      * @param $config
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     private function validateConfig($config)
     {
@@ -1889,7 +1921,7 @@ class Client
 
     /**
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     private function validateConfigParameters()
     {
@@ -1939,7 +1971,7 @@ class Client
 
     /**
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     private function setEndpoints()
     {
@@ -1960,11 +1992,11 @@ class Client
 
     /**
      * @param $message
-     * @throws \Exception
+     * @throws Exception
      */
     private function logAndThrow($message)
     {
         error_log($message, 0);
-        throw new \Exception($message);
+        throw new Exception($message);
     }
 }
