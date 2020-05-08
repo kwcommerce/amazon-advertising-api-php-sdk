@@ -8,6 +8,7 @@ require_once "Versions.php";
 require_once "Regions.php";
 require_once "CurlRequest.php";
 require_once "SponsoredBrandsRequests.php";
+require_once "SponsoredDisplayRequests.php";
 
 /**
  * Class Client
@@ -18,7 +19,7 @@ class Client
     use SponsoredBrandsRequests;
     use SponsoredDisplayRequests;
 
-    private $config = array(
+    private $config = [
         "clientId" => null,
         "clientSecret" => null,
         "region" => null,
@@ -27,7 +28,7 @@ class Client
         "sandbox" => false,
         "saveFile" => false,
         "apiVersion" => 'v1'
-    );
+    ];
 
     private $apiVersion = null;
     private $applicationVersion = null;
@@ -99,8 +100,7 @@ class Client
             "grant_type" => "refresh_token",
             "refresh_token" => $refresh_token,
             "client_id" => $this->config["clientId"],
-            "client_secret" => $this->config["clientSecret"]
-        );
+            "client_secret" => $this->config["clientSecret"]);
 
         $data = "";
         foreach ($params as $k => $v) {
@@ -122,9 +122,7 @@ class Client
         if (is_array($response_array) && array_key_exists("access_token", $response_array)) {
             $this->config["accessToken"] = $response_array["access_token"];
         } else {
-            $this->logAndThrow(
-                "Unable to refresh token. 'access_token' not found in response. " . print_r($response, true)
-            );
+            $this->logAndThrow("Unable to refresh token. 'access_token' not found in response. " . print_r($response, true));
         }
 
         return $response;
@@ -1160,8 +1158,7 @@ class Client
     {
         $data = array(
             "adGroupId" => $adGroupId,
-            "keywords" => $data
-        );
+            "keywords" => $data);
         return $this->operation("keywords/bidRecommendations", $data, "POST");
     }
 
@@ -1880,21 +1877,17 @@ class Client
                     $requestId = json_decode($response, true)["requestId"];
                 }
             }
-            return array(
-                "success" => false,
+            return array("success" => false,
                 "code" => $response_info["http_code"],
                 "response" => $response,
                 'responseInfo' => $response_info,
-                "requestId" => $requestId
-            );
+                "requestId" => $requestId);
         } else {
-            return array(
-                "success" => true,
+            return array("success" => true,
                 "code" => $response_info["http_code"],
                 'responseInfo' => $response_info,
                 "response" => $response,
-                "requestId" => $this->requestId
-            );
+                "requestId" => $this->requestId);
         }
     }
 
