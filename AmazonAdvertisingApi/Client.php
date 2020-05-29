@@ -18,6 +18,7 @@ class Client
 {
     use SponsoredBrandsRequests;
     use SponsoredDisplayRequests;
+    use ProductEligibilityRequests;
 
     private $config = [
         "clientId" => null,
