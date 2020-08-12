@@ -23,12 +23,12 @@
       "AmazonAdvertisingApi\\": "AmazonAdvertisingApi/"
     }
   },
-  "version": "2.1.16",
+  "version": "2.1.17",
   "require": {
     "ext-curl": "*",
     "ext-json": "*",
     "ext-zlib": "*",
-    "php": ">=7.0"
+    "php": ">=7.1"
   },
   "repositories": [
     {
