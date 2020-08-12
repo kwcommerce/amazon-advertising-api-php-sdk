@@ -1299,7 +1299,7 @@ class Client
         if ($reportType === 'sponsoredProducts') {
             return 'sp';
         } elseif ($reportType === 'sponsoredBrands') {
-            return 'sb';
+            return 'hsa';
         } elseif ($reportType === 'sponsoredDisplay') {
             return 'sd';
         } else {
