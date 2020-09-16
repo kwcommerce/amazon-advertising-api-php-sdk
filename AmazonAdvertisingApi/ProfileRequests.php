@@ -18,7 +18,7 @@ trait ProfileRequests
      */
     public function getUserProfile(): array
     {
-        $this->endpoint = 'api.amazon.com';
+        $this->endpoint = 'https://api.amazon.com';
         return $this->operation("user/profile");
     }
 }
