@@ -10,6 +10,7 @@ require_once "CurlRequest.php";
 require_once "SponsoredBrandsRequests.php";
 require_once "SponsoredDisplayRequests.php";
 require_once "ProductEligibilityRequests.php";
+require_once "ProfileRequests.php";
 
 /**
  * Class Client
@@ -20,6 +21,7 @@ class Client
     use SponsoredBrandsRequests;
     use SponsoredDisplayRequests;
     use ProductEligibilityRequests;
+    use ProfileRequests;
 
     private $config = [
         "clientId" => null,
