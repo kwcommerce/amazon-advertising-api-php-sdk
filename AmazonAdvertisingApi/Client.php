@@ -225,12 +225,12 @@ class Client
 
     /**
      * @param string $interface
-     * @param array $params
+     * @param array|null $params
      * @param string $method
      * @return array
      * @throws Exception
      */
-    private function operation(string $interface, array $params = [], string $method = "GET")
+    private function operation(string $interface, ?array $params = [], string $method = "GET")
     {
         $headers = array(
             "Authorization: bearer {$this->config["accessToken"]}",
