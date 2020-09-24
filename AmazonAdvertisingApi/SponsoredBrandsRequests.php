@@ -432,4 +432,99 @@ trait SponsoredBrandsRequests
     {
         return $this->operation("sb/moderation/campaigns/{$campaignId}");
     }
+
+    /**
+     * GET /brands
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Brands/getBrands
+     * @param array|null $data
+     * @return array
+     * @throws Exception
+     */
+    public function getBrands($data = null): array
+    {
+        return $this->operation("brands", $data);
+    }
+
+    /**
+     * GET /stores/assets
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Stores/listAssets
+     * @param array|null $data
+     * @return array
+     * @throws Exception
+     */
+    public function getStoreAssets($data = null): array
+    {
+        return $this->operation("/stores/assets", $data);
+    }
+
+    /**
+     * GET /pageAsins
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Landing%20page%20asins/listAsins
+     * @param array $data
+     * @return array
+     * @throws Exception
+     */
+    public function getPageAsins(array $data): array
+    {
+        if (!isset($data['pageUrl'])) {
+            throw new Exception("pageUrl should be set as GET param");
+        }
+        return $this->operation("pageAsins", $data);
+    }
+
+    /**
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/listCampaigns
+     * @param null $data
+     * @return array
+     * @throws Exception
+     */
+    public function listSponsoredBrandCampaigns($data = null): array
+    {
+        return $this->operation("sb/campaigns", $data);
+    }
+
+    /**
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/createCampaigns
+     * @param array $data
+     * @return array
+     * @throws Exception
+     */
+    public function createSponsoredBrandCampaigns(array $data): array
+    {
+        return $this->operation("sb/campaigns", $data, 'POST');
+    }
+
+    /**
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/updateCampaigns
+     * @param array $data
+     * @return array
+     * @throws Exception
+     */
+    public function updateSponsoredBrandCampaigns(array $data): array
+    {
+        return $this->operation("sb/campaigns", $data, 'PUT');
+    }
+
+
+    /**
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/getCampaign
+     * @param int $campaignId
+     * @return array
+     * @throws Exception
+     */
+    public function getSponsoredBrandCampaign(int $campaignId): array
+    {
+        return $this->operation("sb/campaigns/{$campaignId}");
+    }
+
+    /**
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-brands/3-0/openapi#/Campaigns/archiveCampaign
+     * @param int $campaignId
+     * @return array
+     * @throws Exception
+     */
+    public function archiveSponsoredBrandCampaign(int $campaignId): array
+    {
+        return $this->operation("sb/campaigns/{$campaignId}", null, 'DELETE');
+    }
 }
