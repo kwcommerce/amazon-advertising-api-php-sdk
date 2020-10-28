@@ -30,14 +30,15 @@ class Client
     public const CAMPAIGN_TYPE_SPONSORED_DISPLAY = 'sponsoredDisplay';
 
     private $config = [
-        "clientId" => null,
-        "clientSecret" => null,
-        "region" => null,
-        "accessToken" => null,
-        "refreshToken" => null,
-        "sandbox" => false,
-        "saveFile" => false,
-        "apiVersion" => 'v1'
+        'clientId' => null,
+        'clientSecret' => null,
+        'region' => null,
+        'accessToken' => null,
+        'refreshToken' => null,
+        'sandbox' => false,
+        'saveFile' => false,
+        'apiVersion' => 'v1',
+        'deleteGzipFile' => false,
     ];
 
     private $apiVersion = null;
@@ -192,7 +193,6 @@ class Client
         if ($response['success']) {
             $extractedFile = $this->extractFile($filePath);
             fclose($tmpFile);
-            unlink($filePath);
             $response['response_type'] = 'file';
             $response["response"] = $extractedFile;
             return $response;
