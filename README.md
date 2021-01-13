@@ -1,6 +1,9 @@
 ## Synopsis
 
-Official Amazon Advertising API PHP client library.
+Official Amazon Advertising API PHP client library. 
+
+## Extensions (forked)
+- campaign budget rules
 
 ## Requirements
 
