@@ -13,6 +13,7 @@ trait SponsoredProductsRequests
     /**
      * @param $campaignId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -34,6 +35,7 @@ trait SponsoredProductsRequests
     /**
      * @param $campaignId
      * @param array|null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -48,11 +50,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaigns/extended/{$campaignId}");
     }
 
     /**
      * @param $data
+     *
      * @return array
      * @throws Exception
      */
@@ -67,11 +71,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaigns", $data, "POST");
     }
 
     /**
      * @param $data
+     *
      * @return array
      * @throws Exception
      */
@@ -86,12 +92,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaigns", $data, "PUT");
     }
 
     /**
      * @param $campaignId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -106,11 +114,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaigns/{$campaignId}", null, "DELETE");
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -129,11 +139,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaigns", $data);
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -149,12 +161,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaigns/extended", $data);
     }
 
     /**
      * @param $adGroupId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -170,12 +184,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "adGroups/{$adGroupId}");
     }
 
     /**
      * @param $adGroupId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -191,11 +207,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "adGroups/extended/{$adGroupId}");
     }
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -212,11 +230,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "adGroups", $data, "POST");
     }
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -236,12 +256,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "adGroups", $data, "PUT");
     }
 
     /**
      * @param $adGroupId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -257,11 +279,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "adGroups/{$adGroupId}", null, "DELETE");
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -277,11 +301,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "adGroups", $data);
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -297,12 +323,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "adGroups/extended", $data);
     }
 
     /**
      * @param $keywordId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -318,12 +346,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "keywords/{$keywordId}");
     }
 
     /**
      * @param $keywordId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -342,11 +372,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "keywords/extended/{$keywordId}");
     }
 
     /**
      * @param $data
+     *
      * @return array
      * @throws Exception
      */
@@ -366,11 +398,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "keywords", $data, "POST");
     }
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -390,12 +424,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "keywords", $data, "PUT");
     }
 
     /**
      * @param $keywordId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -411,11 +447,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "keywords/{$keywordId}", null, "DELETE");
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -434,11 +472,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "keywords", $data);
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -454,12 +494,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "keywords/extended", $data);
     }
 
     /**
      * @param $keywordId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -478,12 +520,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "negativeKeywords/{$keywordId}");
     }
 
     /**
      * @param $keywordId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -502,11 +546,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "negativeKeywords/extended/{$keywordId}");
     }
 
     /**
      * @param $data
+     *
      * @return array
      * @throws Exception
      */
@@ -526,11 +572,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "negativeKeywords", $data, "POST");
     }
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -550,12 +598,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "negativeKeywords", $data, "PUT");
     }
 
     /**
      * @param $keywordId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -574,11 +624,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "negativeKeywords/{$keywordId}", null, "DELETE");
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -594,11 +646,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "negativeKeywords", $data);
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -614,12 +668,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "negativeKeywords/extended", $data);
     }
 
     /**
      * @param $keywordId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -638,12 +694,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaignNegativeKeywords/{$keywordId}");
     }
 
     /**
      * @param $keywordId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -662,11 +720,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaignNegativeKeywords/extended/{$keywordId}");
     }
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -686,11 +746,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaignNegativeKeywords", $data, "POST");
     }
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -710,12 +772,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaignNegativeKeywords", $data, "PUT");
     }
 
     /**
      * @param $keywordId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -734,11 +798,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaignNegativeKeywords/{$keywordId}", null, "DELETE");
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -754,11 +820,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaignNegativeKeywords", $data);
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -774,12 +842,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "campaignNegativeKeywords/extended", $data);
     }
 
     /**
      * @param $productAdId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -798,12 +868,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "productAds/{$productAdId}");
     }
 
     /**
      * @param $productAdId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -822,11 +894,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation("productAds/extended/{$productAdId}");
     }
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -846,11 +920,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "productAds", $data, "POST");
     }
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -870,12 +946,14 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "productAds", $data, "PUT");
     }
 
     /**
      * @param $productAdId
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -894,11 +972,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "productAds/{$productAdId}", null, "DELETE");
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -914,11 +994,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation("productAds", $data);
     }
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -934,11 +1016,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "productAds/extended", $data);
     }
 
     /**
      * @param $adGroupId
+     *
      * @return array
      * @throws Exception
      */
@@ -949,6 +1033,7 @@ trait SponsoredProductsRequests
 
     /**
      * @param $keywordId
+     *
      * @return array
      * @throws Exception
      */
@@ -960,6 +1045,7 @@ trait SponsoredProductsRequests
     /**
      * @param $adGroupId
      * @param $data
+     *
      * @return array
      * @throws Exception
      */
@@ -967,13 +1053,15 @@ trait SponsoredProductsRequests
     {
         $data = array(
             "adGroupId" => $adGroupId,
-            "keywords" => $data
+            "keywords" => $data,
         );
+
         return $this->operation("keywords/bidRecommendations", $data, "POST");
     }
 
     /**
      * @param $data
+     *
      * @return array
      * @throws Exception
      */
@@ -981,11 +1069,13 @@ trait SponsoredProductsRequests
     {
         $adGroupId = $data["adGroupId"];
         unset($data["adGroupId"]);
+
         return $this->operation("adGroups/{$adGroupId}/suggested/keywords", $data);
     }
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -993,11 +1083,13 @@ trait SponsoredProductsRequests
     {
         $adGroupId = $data["adGroupId"];
         unset($data["adGroupId"]);
+
         return $this->operation("adGroups/{$adGroupId}/suggested/keywords/extended", $data);
     }
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1005,11 +1097,13 @@ trait SponsoredProductsRequests
     {
         $asin = $data["asin"];
         unset($data["asin"]);
+
         return $this->operation("asins/{$asin}/suggested/keywords", $data);
     }
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1020,7 +1114,9 @@ trait SponsoredProductsRequests
 
     /**
      * GET /v2/stores
+     *
      * @param array|null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1031,7 +1127,9 @@ trait SponsoredProductsRequests
 
     /**
      * GET /v2stores/{$brandEntityId}
+     *
      * @param int $brandEntityId
+     *
      * @return array
      * @throws Exception
      */
@@ -1043,6 +1141,7 @@ trait SponsoredProductsRequests
     /**
      * @param $recordType
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1053,6 +1152,7 @@ trait SponsoredProductsRequests
 
     /**
      * @param $snapshotId
+     *
      * @return array
      * @throws Exception
      */
@@ -1065,12 +1165,14 @@ trait SponsoredProductsRequests
                 return $this->download($json["location"]);
             }
         }
+
         return $req;
     }
 
     /**
      * @param $recordType
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1088,11 +1190,13 @@ trait SponsoredProductsRequests
         if (!$type && $this->apiVersion == 'v2') {
             $this->logAndThrow("Unable to perform request. No type is set");
         }
+
         return $this->operation($type . "{$recordType}/report", $data, "POST");
     }
 
     /**
      * @param array|null $data
+     *
      * @return string
      * @throws Exception
      */
@@ -1114,6 +1218,7 @@ trait SponsoredProductsRequests
 
     /**
      * @param $reportId
+     *
      * @return array
      * @throws Exception
      */
@@ -1126,6 +1231,7 @@ trait SponsoredProductsRequests
                 return $this->download($json["location"]);
             }
         }
+
         return $req;
     }
 
@@ -1133,6 +1239,7 @@ trait SponsoredProductsRequests
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1143,6 +1250,7 @@ trait SponsoredProductsRequests
 
     /**
      * @param null|array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1153,6 +1261,7 @@ trait SponsoredProductsRequests
 
     /**
      * @param int $portfolioId
+     *
      * @return array
      * @throws Exception
      */
@@ -1163,6 +1272,7 @@ trait SponsoredProductsRequests
 
     /**
      * @param int $portfolioId
+     *
      * @return array
      * @throws Exception
      */
@@ -1173,6 +1283,7 @@ trait SponsoredProductsRequests
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1183,6 +1294,7 @@ trait SponsoredProductsRequests
 
     /**
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1198,6 +1310,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#createTargetRecommendations
      *
      * @param array $data [pageSize => int(1-50), pageNumber => int, asins: string[]]
+     *
      * @return array
      * @throws Exception
      */
@@ -1211,6 +1324,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getTargetingClause
      *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
@@ -1224,6 +1338,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getTargetingClauseEx
      *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
@@ -1237,6 +1352,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#listTargetingClauses
      *
      * @param array|null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1250,6 +1366,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#listTargetingClausesEx
      *
      * @param array|null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1263,6 +1380,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#createTargetingClauses
      *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1276,6 +1394,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#updateTargetingClauses
      *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1289,39 +1408,71 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#archiveTargetingClause
      *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
     public function archiveTargetingClause(int $targetId): array
     {
-        return $this->operation("sp/targets/" . $targetId, 'DELETE');
-    }
-
-
-    /**
-     * GET https://advertising-api.amazon.com/v2/sp/targets/categories
-     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getTargetingCategories
-     *
-     * @param array $data
-     * @return array
-     * @throws Exception
-     */
-    public function getTargetingCategories(array $data): array
-    {
-        return $this->operation("sp/targets/categories", $data);
+        return $this->operation("sp/targets/" . $targetId, [], 'DELETE');
     }
 
     /**
-     * GET https://advertising-api.amazon.com/v2/sp/targets/brands
-     * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getBrandRecommendations
+     * GET https://advertising-api.amazon.com/sp/targets/categories/recommendations
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-products/3-0/openapi/prod#/Product%20Targeting/getCategoryRecommendationsForASINs
      *
-     * @param array $data
+     * @param array $data = [
+     *  'asins' => '24KJL3', // maxItems 10000. List of input ASINs. This API does not check if the ASINs are valid
+     *     ASINs
+     *  'includeAncestor' => false, // Enable this if you would like to retrieve categories
+     *      which are ancestor nodes of the original recommended categories.
+     *      This may increase the number of categories returned, but decrease the relevancy of those categories.
+     * ];
+     *
      * @return array
      * @throws Exception
      */
-    public function getBrandRecommendations(array $data): array
+    public function getCategoryRecommendationsForASINs(array $data): array
     {
-        return $this->operation("sp/targets/brands", $data);
+        return $this->operation("sp/targets/categories/recommendations", $data, 'POST');
+    }
+
+    /**
+     * Returns refinements according to category input.
+     *
+     * GET https://advertising-api.amazon.com/sp/targets/category/{$categoryId}/refinements
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-products/3-0/openapi/prod#/Product%20Targeting/getRefinementsForCategory
+     *
+     * @param string $categoryId
+     *
+     * @return array
+     * @throws Exception
+     */
+    public function getRefinementsForCategory(string $categoryId): array
+    {
+        return $this->operation("sp/targets/category/{$categoryId}/refinements");
+    }
+
+    /**
+     * Returns brands related to keyword input for negative targeting.
+     *
+     * GET https://advertising-api.amazon.com/sp/negativeTargets/brands/search
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-products/3-0/openapi/prod#/Product%20Targeting/searchBrands
+     *
+     * @param string $keyword
+     *
+     * @return array
+     * @throws Exception
+     */
+    public function searchBrands(string $keyword): array
+    {
+        return $this->operation(
+            "sp/negativeTargets/brands/search",
+            [
+                'keyword' => $keyword,
+            ],
+            'POST'
+        );
     }
 
     /**
@@ -1329,6 +1480,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getNegativeTargetingClause
      *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
@@ -1342,6 +1494,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getNegativeTargetingClauseEx
      *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
@@ -1355,6 +1508,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#listNegativeTargetingClauses
      *
      * @param array|null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1368,6 +1522,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#listNegativeTargetingClausesEx
      *
      * @param array|null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1383,6 +1538,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#createNegativeTargetingClauses
      *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1396,6 +1552,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#updateNegativeTargetingClauses
      *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1409,12 +1566,13 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#archiveNegativeTargetingClause
      *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
     public function archiveNegativeTargetingClause(int $targetId): array
     {
-        return $this->operation("sp/negativeTargets/" . $targetId, 'DELETE');
+        return $this->operation("sp/negativeTargets/" . $targetId, [], 'DELETE');
     }
 
     //campaign negative products
@@ -1424,6 +1582,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getNegativeTargetingClause
      *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
@@ -1437,6 +1596,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getNegativeTargetingClauseEx
      *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
@@ -1450,6 +1610,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#listNegativeTargetingClauses
      *
      * @param array|null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1463,6 +1624,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#listNegativeTargetingClausesEx
      *
      * @param array|null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1478,6 +1640,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#createNegativeTargetingClauses
      *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1491,6 +1654,7 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#updateNegativeTargetingClauses
      *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -1504,11 +1668,12 @@ trait SponsoredProductsRequests
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#archiveNegativeTargetingClause
      *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
     public function archiveCampaignNegativeTargetingClause(int $targetId): array
     {
-        return $this->operation("sp/campaignNegativeTargets/" . $targetId, 'DELETE');
+        return $this->operation("sp/campaignNegativeTargets/" . $targetId, [], 'DELETE');
     }
 }
