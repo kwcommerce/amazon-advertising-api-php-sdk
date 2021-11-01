@@ -14,7 +14,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets a list of campaigns.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Campaigns/listCampaigns
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -26,7 +28,9 @@ trait SponsoredDisplayRequests
     /**
      * Updates one or more campaigns.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Campaigns/updateCampaigns
+     *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -38,7 +42,9 @@ trait SponsoredDisplayRequests
     /**
      * Create one or more new campaigns.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Campaigns/createCampaigns
+     *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -50,7 +56,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets a requested campaign.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Campaigns/getCampaign
+     *
      * @param int $campaignId
+     *
      * @return array
      * @throws Exception
      */
@@ -62,19 +70,23 @@ trait SponsoredDisplayRequests
     /**
      * Sets the campaign status to archived.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Campaigns/archiveCampaign
+     *
      * @param int $campaignId
+     *
      * @return array
      * @throws Exception
      */
     public function archiveSponsoredDisplayCampaigns(int $campaignId): array
     {
-        return $this->operation("sd/campaigns/{$campaignId}", "DELETE");
+        return $this->operation("sd/campaigns/{$campaignId}", [], "DELETE");
     }
 
     /**
      * Gets a list of campaigns with extended fields.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Campaigns/listCampaignsEx
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -86,7 +98,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets extended information for a requested campaign.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Campaigns/getCampaignResponseEx
+     *
      * @param int $campaignId
+     *
      * @return array
      * @throws Exception
      */
@@ -98,7 +112,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets a list of ad groups.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Ad%20groups/listAdGroups
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -110,7 +126,9 @@ trait SponsoredDisplayRequests
     /**
      * Updates on or more ad groups.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Ad%20groups/updateAdGroups
+     *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -122,7 +140,9 @@ trait SponsoredDisplayRequests
     /**
      * Creates one or more ad groups.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Ad%20groups/createAdGroups
+     *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -134,7 +154,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets a requested ad group.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Ad%20groups/getAdGroup
+     *
      * @param int $adGroupId
+     *
      * @return array
      * @throws Exception
      */
@@ -146,19 +168,23 @@ trait SponsoredDisplayRequests
     /**
      * Sets the ad group status to archived.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Ad%20groups/archiveAdGroup
+     *
      * @param int $adGroupId
+     *
      * @return array
      * @throws Exception
      */
     public function archiveSponsoredDisplayAdGroupId(int $adGroupId): array
     {
-        return $this->operation("sd/adGroups/{$adGroupId}", "DELETE");
+        return $this->operation("sd/adGroups/{$adGroupId}", [], "DELETE");
     }
 
     /**
      * Gets a list of ad groups with extended fields.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Ad%20groups/listAdGroupsEx
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -170,7 +196,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets extended information for a requested ad group.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Ad%20groups/getAdGroupResponseEx
+     *
      * @param int $adGroupId
+     *
      * @return array
      * @throws Exception
      */
@@ -182,7 +210,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets a list of product ads.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Product%20ads/listProductAds
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -194,7 +224,9 @@ trait SponsoredDisplayRequests
     /**
      * Updates one or more product ads.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Product%20ads/updateProductAds
+     *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -206,7 +238,9 @@ trait SponsoredDisplayRequests
     /**
      * Creates one or more product ads.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Product%20ads/createProductAds
+     *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -218,7 +252,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets a requested product ad.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Product%20ads/getProductAd
+     *
      * @param int $adId
+     *
      * @return array
      * @throws Exception
      */
@@ -230,19 +266,23 @@ trait SponsoredDisplayRequests
     /**
      * Sets the status of a product ad to archived.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Product%20ads/archiveProductAd
+     *
      * @param int $adId
+     *
      * @return array
      * @throws Exception
      */
     public function archiveSponsoredDisplayProductAds(int $adId): array
     {
-        return $this->operation("sd/productAds/{$adId}", "DELETE");
+        return $this->operation("sd/productAds/{$adId}", [], "DELETE");
     }
 
     /**
      * Gets a list of product ads with extended fields.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Product%20ads/listProductAdsEx
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -254,7 +294,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets extended information for a product ad.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Product%20ads/getProductAdResponseEx
+     *
      * @param int $adId
+     *
      * @return array
      * @throws Exception
      */
@@ -266,7 +308,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets a list of targeting clauses.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Targeting/listTargetingClauses
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -278,7 +322,9 @@ trait SponsoredDisplayRequests
     /**
      * Updates one or more targeting clauses.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Targeting/updateTargetingClauses
+     *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -290,7 +336,9 @@ trait SponsoredDisplayRequests
     /**
      * Creates one or more targeting clauses.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Targeting/createTargetingClauses
+     *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -302,7 +350,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets a targeting clause specified by identifier.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Targeting/getTargets
+     *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
@@ -314,19 +364,23 @@ trait SponsoredDisplayRequests
     /**
      * Sets the `state` of a targeting clause to `archived`.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Targeting/archiveTargetingClause
+     *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
     public function archiveSponsoredDisplayTargets(int $targetId): array
     {
-        return $this->operation("sd/targets/{$targetId}", "DELETE");
+        return $this->operation("sd/targets/{$targetId}", [], "DELETE");
     }
 
     /**
      * Gets a list of targeting clause objects with extended fields.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Targeting/listTargetingClausesEx
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -338,7 +392,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets extended information for a targeting clause.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Targeting/getTargetsEx
+     *
      * @param int $targetId
+     *
      * @return array
      * @throws Exception
      */
@@ -350,7 +406,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets a list of negative targeting clauses.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Negative%20targeting/listNegativeTargetingClauses
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -362,7 +420,9 @@ trait SponsoredDisplayRequests
     /**
      * Updates one or more negative targeting clauses.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Negative%20targeting/updateNegativeTargetingClauses
+     *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -374,7 +434,9 @@ trait SponsoredDisplayRequests
     /**
      * Creates one or more negative targeting clauses.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Negative%20targeting/createNegativeTargetingClauses
+     *
      * @param array $data
+     *
      * @return array
      * @throws Exception
      */
@@ -386,7 +448,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets a negative targeting clause specified by identifier.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Negative%20targeting/getNegativeTargets
+     *
      * @param int $negativeTargetId
+     *
      * @return array
      * @throws Exception
      */
@@ -398,19 +462,23 @@ trait SponsoredDisplayRequests
     /**
      * Sets the `state` of a negative targeting clause to `archived`.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Negative%20targeting/archiveNegativeTargetingClause
+     *
      * @param int $negativeTargetId
+     *
      * @return array
      * @throws Exception
      */
     public function archiveSponsoredDisplayNegativeTargets(int $negativeTargetId): array
     {
-        return $this->operation("sd/negativeTargets/{$negativeTargetId}", "DELETE");
+        return $this->operation("sd/negativeTargets/{$negativeTargetId}", [], "DELETE");
     }
 
     /**
      * Gets a list of negative targeting clause objects with extended fields.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Negative%20targeting/listNegativeTargetingClausesEx
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -422,7 +490,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets extended information for a negative targeting clause.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Negative%20targeting/getNegativeTargetsEx
+     *
      * @param int $negativeTargetId
+     *
      * @return array
      * @throws Exception
      */
@@ -435,7 +505,9 @@ trait SponsoredDisplayRequests
      * Gets a list of all products eligible for advertising using the specified tactic type.
      * Each product in the list includes an associated readiness status.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Suggested%20products/listSuggestedProducts
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
@@ -447,7 +519,9 @@ trait SponsoredDisplayRequests
     /**
      * Gets the readiness status for a specified list of up to 100 products.
      * @see https://advertising.amazon.com/API/docs/en-us/sponsored-display/3-0/openapi#/Suggested%20products/getProductReadinessStatus
+     *
      * @param null $data
+     *
      * @return array
      * @throws Exception
      */
