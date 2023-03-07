@@ -29,6 +29,12 @@ class Client
     public const CAMPAIGN_TYPE_SPONSORED_BRANDS = 'sponsoredBrands';
     public const CAMPAIGN_TYPE_SPONSORED_DISPLAY = 'sponsoredDisplay';
 
+    public const HEADER_AUTHORIZATION = 'Authorization';
+    public const HEADER_CONTENT_TYPE = 'Content-Type';
+    public const HEADER_USER_AGENT = 'User-Agent';
+    public const HEADER_AMAZON_ADVERTISING_API_CLIENT_ID = 'Amazon-Advertising-API-ClientId';
+    public const HEADER_AMAZON_ADVERTISING_API_SCOPE = 'Amazon-Advertising-API-Scope';
+
     private $config = [
         'clientId' => null,
         'clientSecret' => null,
@@ -244,14 +250,14 @@ class Client
     public function compileResultHeadersForOperation(array $customHeaders): array
     {
         $baseHeaders = [
-            'Authorization' => 'bearer ' . $this->config["accessToken"],
-            'Content-Type' => 'application/json',
-            'User-Agent' => $this->userAgent,
-            'Amazon-Advertising-API-ClientId' => $this->config["clientId"]
+            self::HEADER_AUTHORIZATION => 'bearer ' . $this->config["accessToken"],
+            self::HEADER_CONTENT_TYPE => 'application/json',
+            self::HEADER_USER_AGENT => $this->userAgent,
+            self::HEADER_AMAZON_ADVERTISING_API_CLIENT_ID => $this->config["clientId"]
         ];
 
         if (!is_null($this->profileId)) {
-            $baseHeaders['Amazon-Advertising-API-Scope'] = $this->profileId;
+            $baseHeaders[self::HEADER_AMAZON_ADVERTISING_API_SCOPE] = $this->profileId;
         }
 
         $headers = array_merge($baseHeaders, $customHeaders);
