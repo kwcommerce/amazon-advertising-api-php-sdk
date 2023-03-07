@@ -57,7 +57,9 @@ class Client
 
     /**
      * Client constructor.
+     *
      * @param $config
+     *
      * @throws Exception
      */
     public function __construct($config)
@@ -102,7 +104,7 @@ class Client
     {
         $headers = array(
             "Content-Type: application/x-www-form-urlencoded;charset=UTF-8",
-            "User-Agent: {$this->userAgent}"
+            "User-Agent: {$this->userAgent}",
         );
 
         $refresh_token = rawurldecode($this->config["refreshToken"]);
@@ -111,7 +113,7 @@ class Client
             "grant_type" => "refresh_token",
             "refresh_token" => $refresh_token,
             "client_id" => $this->config["clientId"],
-            "client_secret" => $this->config["clientSecret"]
+            "client_secret" => $this->config["clientSecret"],
         );
 
         $data = "";
@@ -134,8 +136,12 @@ class Client
         if (is_array($response_array) && array_key_exists("access_token", $response_array)) {
             $this->config["accessToken"] = $response_array["access_token"];
         } else {
-            $this->logAndThrow("Unable to refresh token. 'access_token' not found in response. " . print_r($response,
-                    true));
+            $this->logAndThrow(
+                "Unable to refresh token. 'access_token' not found in response. " . print_r(
+                    $response,
+                    true
+                )
+            );
         }
 
         return $response;
@@ -144,6 +150,7 @@ class Client
     /**
      * @param $location
      * @param bool $gunzip
+     *
      * @return array
      */
     private function download($location, $gunzip = false)
@@ -170,6 +177,7 @@ class Client
         if ($gunzip) {
             $response = $this->executeRequest($request);
             $response["response"] = gzdecode($response["response"]);
+
             return $response;
         }
 
@@ -179,7 +187,9 @@ class Client
     /**
      * Save *.json.gz file, extract it, remove .gz file
      * and set into response path to json file
+     *
      * @param CurlRequest $request
+     *
      * @return array
      */
     protected function saveDownloaded(CurlRequest $request): array
@@ -195,16 +205,19 @@ class Client
             fclose($tmpFile);
             $response['response_type'] = 'file';
             $response["response"] = $extractedFile;
+
             return $response;
         } else {
             fclose($tmpFile);
             unlink($filePath);
+
             return $response;
         }
     }
 
     /**
      * @param string $filePath
+     *
      * @return string
      */
     protected function extractFile(string $filePath): string
@@ -224,24 +237,48 @@ class Client
     }
 
     /**
+     * @param array $customHeaders
+     *
+     * @return array
+     */
+    public function compileResultHeadersForOperation(array $customHeaders): array
+    {
+        $baseHeaders = [
+            'Authorization' => 'bearer ' . $this->config["accessToken"],
+            'Content-Type' => 'application/json',
+            'User-Agent' => $this->userAgent,
+            'Amazon-Advertising-API-ClientId' => $this->config["clientId"]
+        ];
+
+        if (!is_null($this->profileId)) {
+            $baseHeaders['Amazon-Advertising-API-Scope'] = $this->profileId;
+        }
+
+        $headers = array_merge($baseHeaders, $customHeaders);
+
+        $resultHeaders = [];
+        foreach ($headers as $key => $value) {
+            $resultHeaders[] = $key . ': ' . $value;
+        }
+
+        return $resultHeaders;
+    }
+
+    /**
      * @param string $interface
      * @param array|null $params
      * @param string $method
+     *
      * @return array
      * @throws Exception
      */
-    private function operation(string $interface, ?array $params = [], string $method = "GET")
-    {
-        $headers = array(
-            "Authorization: bearer {$this->config["accessToken"]}",
-            "Content-Type: application/json",
-            "User-Agent: {$this->userAgent}",
-            "Amazon-Advertising-API-ClientId: {$this->config["clientId"]}"
-        );
-
-        if (!is_null($this->profileId)) {
-            array_push($headers, "Amazon-Advertising-API-Scope: {$this->profileId}");
-        }
+    private function operation(
+        string $interface,
+        ?array $params = [],
+        string $method = "GET",
+        array $customHeaders = []
+    ) {
+        $headers = $this->compileResultHeadersForOperation($customHeaders);
 
         $this->headers = $headers;
 
@@ -277,11 +314,13 @@ class Client
         $request->setOption(CURLOPT_HTTPHEADER, $headers);
         $request->setOption(CURLOPT_USERAGENT, $this->userAgent);
         $request->setOption(CURLOPT_CUSTOMREQUEST, strtoupper($method));
+
         return $this->executeRequest($request);
     }
 
     /**
      * @param CurlRequest $request
+     *
      * @return array
      */
     protected function executeRequest(CurlRequest $request)
@@ -304,12 +343,13 @@ class Client
                     $requestId = json_decode($response, true)["requestId"];
                 }
             }
+
             return array(
                 "success" => false,
                 "code" => $response_info["http_code"],
                 "response" => $response,
                 'responseInfo' => $response_info,
-                "requestId" => $requestId
+                "requestId" => $requestId,
             );
         } else {
             return array(
@@ -317,13 +357,14 @@ class Client
                 "code" => $response_info["http_code"],
                 'responseInfo' => $response_info,
                 "response" => $response,
-                "requestId" => $this->requestId
+                "requestId" => $this->requestId,
             );
         }
     }
 
     /**
      * @param $config
+     *
      * @return bool
      * @throws Exception
      */
@@ -340,6 +381,7 @@ class Client
                 $this->logAndThrow("Unknown parameter '{$k}' in config.");
             }
         }
+
         return true;
     }
 
@@ -390,6 +432,7 @@ class Client
                     break;
             }
         }
+
         return true;
     }
 
@@ -411,11 +454,13 @@ class Client
         } else {
             $this->logAndThrow("Invalid region.");
         }
+
         return true;
     }
 
     /**
      * @param $message
+     *
      * @throws Exception
      */
     private function logAndThrow($message)
@@ -425,6 +470,7 @@ class Client
 
     /**
      * @param array|null $data
+     *
      * @return string
      */
     protected function getCampaignTypeFromData(?array $data): string
