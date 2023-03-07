@@ -1,5 +1,5 @@
 {
-  "name": "kubrey/amazon-advertising-api-php-sdk",
+  "name": "kwcommerce/amazon-advertising-api-php-sdk",
   "type": "library",
   "description": "Amazon Advertising API Client Library",
   "keywords": [
@@ -28,11 +28,5 @@
     "ext-json": "*",
     "ext-zlib": "*",
     "php": ">=7.1"
-  },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/kubrey/amazon-advertising-api-php-sdk"
-    }
-  ]
+  }
 }
