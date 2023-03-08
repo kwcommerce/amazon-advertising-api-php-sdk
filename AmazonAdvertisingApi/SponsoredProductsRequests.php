@@ -1676,4 +1676,18 @@ trait SponsoredProductsRequests
     {
         return $this->operation("sp/campaignNegativeTargets/" . $targetId, [], 'DELETE');
     }
+
+    /**
+     * POST https://advertising-api.amazon.com/sp/targets/products/recommendations
+     * @see https://advertising.amazon.com/API/docs/en-us/sponsored-products/3-0/openapi/prod#/Product%20Recommendation%20Service/getProductRecommendations
+     *
+     * @param array $data
+     *
+     * @return array
+     * @throws Exception
+     */
+    public function getTargetsProductsRecommendations(array $data): array
+    {
+        return $this->operation("sp/targets/products/recommendations", $data, 'POST');
+    }
 }
