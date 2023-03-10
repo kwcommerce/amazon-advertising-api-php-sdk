@@ -1688,6 +1688,11 @@ trait SponsoredProductsRequests
      */
     public function getTargetsProductsRecommendations(array $data): array
     {
-        return $this->operation("sp/targets/products/recommendations", $data, 'POST');
+        return $this->operation(
+            "sp/targets/products/recommendations",
+            $data,
+            'POST',
+            ["Content-Type" => "application/vnd.spproductrecommendation.v3+json"]
+        );
     }
 }
