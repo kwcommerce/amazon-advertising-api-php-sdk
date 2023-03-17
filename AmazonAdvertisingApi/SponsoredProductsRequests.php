@@ -1178,20 +1178,26 @@ trait SponsoredProductsRequests
      */
     public function requestReport($recordType, ?array $data = null)
     {
-        $type = $this->getCampaignTypeForReportRequest($data);
-        if ($this->apiVersion == 'v1') {
-            $type = null;
-        } else {
-            $type = $type . "/";
-            if (is_array($data) && isset($data['reportType'])) {
-                unset($data['reportType']);
+        if ($this->apiVersion == 'v3' || $this->apiVersion == ''){
+            $interface = "reporting/reports";
+        }else {
+            $type = $this->getCampaignTypeForReportRequest($data);
+            if ($this->apiVersion == 'v1') {
+                $type = null;
+            } else {
+                $type = $type . "/";
+                if (is_array($data) && isset($data['reportType'])) {
+                    unset($data['reportType']);
+                }
             }
-        }
-        if (!$type && $this->apiVersion == 'v2') {
-            $this->logAndThrow("Unable to perform request. No type is set");
+            if (!$type && $this->apiVersion == 'v2') {
+                $this->logAndThrow("Unable to perform request. No type is set");
+            }
+
+            $interface = $type . "{$recordType}/report";
         }
 
-        return $this->operation($type . "{$recordType}/report", $data, "POST");
+        return $this->operation($interface, $data, "POST");
     }
 
     /**
@@ -1224,11 +1230,21 @@ trait SponsoredProductsRequests
      */
     public function getReport($reportId)
     {
-        $req = $this->operation("reports/{$reportId}");
-        if ($req["success"]) {
-            $json = json_decode($req["response"], true);
-            if ($json["status"] == "SUCCESS") {
-                return $this->download($json["location"]);
+        if ($this->apiVersion == 'v3' || $this->apiVersion == ''){
+            $req = $this->operation("reporting/reports/{$reportId}");
+            if ($req["success"]) {
+                $json = json_decode($req["response"], true);
+                if ($json["status"] == "COMPLETED") {
+                    return $this->download($json["url"], true);
+                }
+            }
+        }else {
+            $req = $this->operation("reports/{$reportId}");
+            if ($req["success"]) {
+                $json = json_decode($req["response"], true);
+                if ($json["status"] == "SUCCESS") {
+                    return $this->download($json["location"]);
+                }
             }
         }
 
